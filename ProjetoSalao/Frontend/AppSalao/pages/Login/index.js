@@ -10,35 +10,31 @@ import LogoSalao from '../../assets/logoSalao2.jpeg';
 const Login = () => {
     return(
         <View style={styles.container}>
+            <LinearGradient
+                // Background Linear Gradient
+                colors={['whitesmoke', 'blueviolet']}
+                style={styles.container}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+            >
+
            <View style={styles.form}>
 
-                <Image
+               {/*  <Image
                     style={styles.img}
                     source={{
                         uri: { LogoSalao }
                     }}
+                /> */}
+
+                <Input
+                    placeholder="Email"
+                    style={styles.inputStyles}
                 />
 
                 <Input
-                    placeholder="Username"
-                    leftIcon={
-                        <Icon
-                            name='user'
-                            size={27}
-                            color='blueviolet'
-                        />
-                    }
-                />
-
-                <Input
-                    placeholder="Username"
-                    leftIcon={
-                        <Icon
-                            name='user-lock'
-                            size={27}
-                            color='blueviolet'
-                        />
-                    }
+                    placeholder="Senha"
+                    style={styles.inputStyles}
                 />
 
                 <Text style={styles.resetPassword}>Esqueceu a senha?</Text>
@@ -52,14 +48,19 @@ const Login = () => {
                     buttonStyle={styles.buttonSignup}
                     title="SIGN UP"
                 />
-             </View>  
-        
 
-             <LinearGradient
+                <View style={styles.circle}>
+                <LinearGradient
                 // Background Linear Gradient
                 colors={['whitesmoke', 'blueviolet']}
-                style={styles.container} 
+                style={styles.circle}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
             />
+                </View>
+             </View>  
+        
+             </LinearGradient>
         </View>
         
     );
