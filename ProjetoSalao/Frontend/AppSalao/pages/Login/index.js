@@ -4,8 +4,6 @@ import styles from './styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input, Button } from 'react-native-elements';
 import { LinearGradient } from 'expo-linear-gradient';
-import LogoSalao from '../../assets/logoSalao2.jpeg';
-
 
 const Login = () => {
     return(
@@ -19,13 +17,10 @@ const Login = () => {
             >
 
            <View style={styles.form}>
-
-               {/*  <Image
+                <Image
+                    source={require('../../assets/logoSalao2.jpeg')}
                     style={styles.img}
-                    source={{
-                        uri: { LogoSalao }
-                    }}
-                /> */}
+                />
 
                 <Input
                     placeholder="Email"

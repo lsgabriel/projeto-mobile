@@ -5,11 +5,11 @@ const styles = StyleSheet.create({
         height:950,
     },
     img: {
-        width: 350,
-        height: 200,
+        width: 300,height: 195,
+        marginLeft:30,marginBottom:8,
     },
     form:{
-        color:'white',marginTop:200,
+        color:'white',marginTop:82,
     },
     resetPassword:{
         width:200,color:'#fff',
