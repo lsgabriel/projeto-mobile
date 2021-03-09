@@ -18,7 +18,7 @@ const Login = () => {
 
            <View style={styles.form}>
                 <Image
-                    source={require('../../assets/logoSalao2.jpeg')}
+                    source={require('../../assets/logoApp.png')}
                     style={styles.img}
                 />
 
