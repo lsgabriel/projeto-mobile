@@ -30,7 +30,9 @@ const Login = () => {
                 <Input
                     placeholder="Senha"
                     style={styles.inputStyles}
+                    secureTextEntry={true}
                 />
+                
 
                 <Text style={styles.resetPassword}>Esqueceu a senha?</Text>
 
