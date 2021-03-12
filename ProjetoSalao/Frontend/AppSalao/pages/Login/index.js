@@ -23,7 +23,7 @@ const Login = () => {
                 />
 
                 <Input
-                    placeholder="Email:"
+                    placeholder="Email"
                     style={styles.inputStyles}
                 />
 
