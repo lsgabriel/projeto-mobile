@@ -4,8 +4,11 @@ import styles from './styles';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input, Button } from 'react-native-elements';
 import { LinearGradient } from 'expo-linear-gradient';
+import {useNavigation} from '@react-navigation/native';
 
 const Login = () => {
+    const navigation = useNavigation();
+
     return(
         <View style={styles.container}>
             <LinearGradient
@@ -44,6 +47,7 @@ const Login = () => {
                 <Button
                     buttonStyle={styles.buttonSignup}
                     title="SIGN UP"
+                    onPress={()=>navigation.navigate('SignUp')}
                 />
 
                 <View style={styles.circle}>

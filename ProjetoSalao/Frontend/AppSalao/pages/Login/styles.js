@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     },
     buttonSignup:{
         backgroundColor:'lightgray',marginTop:5,
-        padding:15,width:170,marginLeft:98,
+        padding:15,width:180,marginLeft:89,
         borderRadius:40,
     },
     inputStyles:{
