@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         padding:15,
         width:200,
         borderRadius:40,
-        alignSelf: 'center'
+        alignSelf: 'center',
     },
     circle:{
         position: 'absolute',

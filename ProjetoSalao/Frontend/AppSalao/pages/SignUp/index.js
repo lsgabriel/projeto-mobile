@@ -3,12 +3,13 @@ import {View, Text, Image} from 'react-native';
 import {Input, Button} from 'react-native-elements';
 import styles from './styles';
 import {LinearGradient} from 'expo-linear-gradient';
-import {Formik} from 'formik';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {Formik} from 'formik';
 
 const SignUp = () =>{
 
   const [eye, setEye] = useState(true);
+  const [eye2, setEye2] = useState(true);
 
     return(
         <View style={styles.background}>
@@ -72,13 +73,13 @@ const SignUp = () =>{
               }
               rightIcon={
                 <Icon
-                  name={eye ? 'visibility' : 'visibility-off'}
+                  name={eye2 ? 'visibility' : 'visibility-off'}
                   size={24}
                   color='#AAA'
-                  onPress={() => setEye(!eye)}
+                  onPress={() => setEye2(!eye2)}
                 />
               }
-              secureTextEntry={eye}
+              secureTextEntry={eye2}
               inputContainerStyle={styles.inputStyles}
             />
 
