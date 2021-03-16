@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {View, Text, Image} from 'react-native';
 import {Input, Button} from 'react-native-elements';
 import styles from './styles';
 import {LinearGradient} from 'expo-linear-gradient';
 import {Formik} from 'formik';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const SignUp = () =>{
+
+  const [eye, setEye] = useState(true);
 
     return(
         <View style={styles.background}>
             <LinearGradient
         // Background Linear Gradient
-        colors={['white', 'blueviolet']}
+        colors={['#FFDEFF', '#C833CA']}
         style={styles.background}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
@@ -25,27 +28,73 @@ const SignUp = () =>{
             />
 
            
-              <Input
-                placeholder="Email"
-                style={styles.inputStyles}
-              />
+            <Input
+              placeholder="Email"
+              inputContainerStyle={styles.inputStyles}
+              leftIcon={
+                <Icon
+                  name='email'
+                  size={24}
+                  color='#AAA'
+                />
+              }
+            />
 
-              <Input
-                placeholder="Senha"
-                style={styles.inputStyles}
-                secureTextEntry={true}
-              />
-          
+            <Input
+              placeholder="Senha"
+              leftIcon={
+                <Icon
+                  name='lock'
+                  size={24}
+                  color='#AAA'
+                />
+              }
+              rightIcon={
+                <Icon
+                  name={eye ? 'visibility' : 'visibility-off'}
+                  size={24}
+                  color='#AAA'
+                  onPress={() => setEye(!eye)}
+                />
+              }
+              secureTextEntry={eye}
+              inputContainerStyle={styles.inputStyles}
+            />
+            
+            <Input
+              placeholder="Confirme a Senha"
+              leftIcon={
+                <Icon
+                  name='lock'
+                  size={24}
+                  color='#AAA'
+                />
+              }
+              rightIcon={
+                <Icon
+                  name={eye ? 'visibility' : 'visibility-off'}
+                  size={24}
+                  color='#AAA'
+                  onPress={() => setEye(!eye)}
+                />
+              }
+              secureTextEntry={eye}
+              inputContainerStyle={styles.inputStyles}
+            />
+
 
             <Button
                 buttonStyle={styles.button}
                 title="Cadastre-se"
             />
 
+            <View style={styles.topCircle}>
+            </View>
+
             <View style={styles.circle}>
               <LinearGradient
                 // Background Linear Gradient
-                colors={['whitesmoke', 'blueviolet']}
+                colors={['#EFA8F1', '#C433C7']}
                 style={styles.circle}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}
