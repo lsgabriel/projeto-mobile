@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Professionals from './pages/Professionals';
+import ProfessionalsDesc from './pages/ProfessionalsDesc';
 
 const Stack = createStackNavigator();
 
@@ -12,10 +13,10 @@ const routes = () => {
     return(
         <NavigationContainer>
             <Stack.Navigator screenOptions={{headerShown:false}} >
+            <Stack.Screen name="Professionals" component={Professionals} />
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="SignUp" component={SignUp} />
-            <Stack.Screen name="Professionals" component={Professionals} />
-
+            <Stack.Screen name="ProfessionalsDesc" component={ProfessionalsDesc} />
             
             {/* 1- login  2- signUp 
             3- serviços 4-perfil-usuario
