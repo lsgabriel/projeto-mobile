@@ -13,8 +13,9 @@ const routes = () => {
     return(
         <NavigationContainer>
             <Stack.Navigator screenOptions={{headerShown:false}} >
-            <Stack.Screen name="Professionals" component={Professionals} />
             <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen name="Professionals" component={Professionals} />
+            
             <Stack.Screen name="SignUp" component={SignUp} />
             <Stack.Screen name="ProfessionalsDesc" component={ProfessionalsDesc} />
             

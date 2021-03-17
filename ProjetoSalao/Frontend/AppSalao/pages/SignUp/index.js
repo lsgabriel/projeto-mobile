@@ -4,14 +4,34 @@ import {Input, Button} from 'react-native-elements';
 import styles from './styles';
 import {LinearGradient} from 'expo-linear-gradient';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {useNavigation} from '@react-navigation/native';
 import {Formik} from 'formik';
+import * as Yup from 'yup';
+
+const CreateUserSchema = Yup.object().shape({
+    email: Yup.string().email('Deve ser um email valido').required('Esse campo é obrigatorio'),
+    password: Yup.string().min(6, 'A senha deve ter no minimo 6 caracteres').required('Esse campo é obrigatorio'),
+});
 
 const SignUp = () =>{
 
   const [eye, setEye] = useState(true);
   const [eye2, setEye2] = useState(true);
 
+  const initialValues = {
+    password : '',
+    email : '',
+  }
+
     return(
+      <Formik
+            initialValues={initialValues}
+            onSubmit={values => saveUser(values)}
+            validationSchema={CreateUserSchema}
+        >
+
+        {({handleChange, handleSubmit, handleBlur, values, errors, touched, isValid})=>(
+
         <View style={styles.background}>
             <LinearGradient
         // Background Linear Gradient
@@ -39,6 +59,10 @@ const SignUp = () =>{
                   color='#AAA'
                 />
               }
+                    value={values.email}
+                    onChangeText={handleChange('email')}
+                    onBlur={handleBlur('email')}
+                    errorMessage={errors.email && touched.email ? errors.email : null}
             />
 
             <Input
@@ -60,6 +84,11 @@ const SignUp = () =>{
               }
               secureTextEntry={eye}
               inputContainerStyle={styles.inputStyles}
+
+              value={values.password}
+                    onChangeText={handleChange('password')}
+                    onBlur={handleBlur('password')}
+                    errorMessage={errors.password  && touched.password ? errors.password : null}
             />
             
             <Input
@@ -81,12 +110,18 @@ const SignUp = () =>{
               }
               secureTextEntry={eye2}
               inputContainerStyle={styles.inputStyles}
+
+                    value={values.password}
+                    onChangeText={handleChange('password')}
+                    onBlur={handleBlur('password')}
+                    errorMessage={errors.password  && touched.password ? errors.password : null}
             />
 
 
             <Button
                 buttonStyle={styles.button}
                 title="Cadastre-se"
+                onPress={handleSubmit}
             />
 
             <View style={styles.topCircle}>
@@ -105,6 +140,8 @@ const SignUp = () =>{
 
             </LinearGradient>
         </View>
+        )}
+        </Formik>
     );
 }
 
