@@ -24,7 +24,7 @@ const Professionals = () => {
             </Header>
             <SearchBar
                 placeholder='Busque um Profissional'
-                lightTheme='true'
+                lightTheme
             />
             <FlatList
                 data={data}

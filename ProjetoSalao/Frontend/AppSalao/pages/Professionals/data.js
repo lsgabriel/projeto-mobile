@@ -11,7 +11,7 @@ const data =[
         Pname: 'Carla',
         Pdesc: 'Especialista em Massagem',
         Ppic: 'https://s23527.pcdn.co/wp-content/uploads/2015/01/Dawn-Head-Shot-446x670.jpg.optimal.jpg',
-        Pfav: false,
+        Pfav: true,
     },
     {
         id: 3,
@@ -25,7 +25,7 @@ const data =[
         Pname: 'Josefina',
         Pdesc: 'Especialista em Pedicure',
         Ppic: 'https://s3-ap-southeast-1.amazonaws.com/blog-sg/wp-content/uploads/2016/09/29153539/asian-woman-smiling-professional.jpg',
-        Pfav: false,
+        Pfav: true,
     },
     {
         id: 5,

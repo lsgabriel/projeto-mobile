@@ -78,6 +78,7 @@ const Login = () => {
 
                 <View style={styles.topCircle}>
                 </View>
+                
                 <View style={styles.circle}>
                 <LinearGradient
                 // Background Linear Gradient
