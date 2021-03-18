@@ -8,9 +8,9 @@ import {useNavigation} from '@react-navigation/native';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 
-const CreateUserSchema = Yup.object().shape({
+const LoginSchema = Yup.object().shape({
     email: Yup.string().email('Deve ser um email valido').required('Esse campo é obrigatorio'),
-    password: Yup.string().min(6, 'A senha deve ter no minimo 6 caracteres').required('Esse campo é obrigatorio'),
+    password: Yup.string().required('Esse campo é obrigatorio'),
 });
 
 const Login = () => {
@@ -27,7 +27,7 @@ const Login = () => {
         <Formik
             initialValues={initialValues}
             onSubmit={values => saveUser(values)}
-            validationSchema={CreateUserSchema}
+            validationSchema={LoginSchema}
         >
 
         {({handleChange, handleSubmit, handleBlur, values, errors, touched, isValid})=>(

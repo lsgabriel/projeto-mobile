@@ -10,7 +10,7 @@ import * as Yup from 'yup';
 
 const CreateUserSchema = Yup.object().shape({
     email: Yup.string().email('Deve ser um email valido').required('Esse campo é obrigatorio'),
-    password: Yup.string().min(6, 'A senha deve ter no minimo 6 caracteres').required('Esse campo é obrigatorio'),
+    password: Yup.string().required('Esse campo é obrigatorio'),
 });
 
 const SignUp = () =>{
