@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity, TouchableWithoutFeedback, TouchableHighlight } from 'react-native';
+import { View, Text, Image, TouchableOpacity, TouchableWithoutFeedback, TouchableHighlight, ScrollView } from 'react-native';
 import { Header, SearchBar } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import data from '../Professionals/data';
@@ -9,6 +9,7 @@ import styles from './styles';
 const Home = () => {
 
     return (
+        <ScrollView>
         <LinearGradient
             // Background Linear Gradient
             colors={['#FFDEFF', '#C833CA']}
@@ -33,12 +34,7 @@ const Home = () => {
                     <Text
                         style={styles.subMainText}
                     >
-                        Olá,
-                    </Text>
-                    <Text
-                        style={styles.mainText}
-                    >
-                        {data[1].Pname}
+                        Olá, {data[1].Pname}
                     </Text>
                 </View>
 
@@ -67,15 +63,13 @@ const Home = () => {
                     lightTheme={false}
                 />
 
-                <Text style={styles.dividerText}
-                >ou</Text>
+                
 
                 <View style={styles.containerText}>
-                    <View style={styles.line} />
                     <Text style={styles.lineText}>
                         Escolha um serviço
                         </Text>
-                    <View style={styles.line} />
+                    
                 </View>
 
                 <View style={styles.servicesContainer}>
@@ -83,7 +77,7 @@ const Home = () => {
                     <TouchableOpacity style={styles.servicesItem}>
                         <Icon
                             name='email'
-                            size={45}
+                            size={52}
                             style={styles.servicesIcon}
                             color='#832189'
                         />
@@ -95,7 +89,7 @@ const Home = () => {
                     <TouchableOpacity style={styles.servicesItem}>
                         <Icon
                             name='email'
-                            size={45}
+                            size={52}
                             style={styles.servicesIcon}
                             color='#832189'
                         />
@@ -107,7 +101,7 @@ const Home = () => {
                     <TouchableOpacity style={styles.servicesItem}>
                         <Icon
                             name='email'
-                            size={45}
+                            size={52}
                             style={styles.servicesIcon}
                             color='#832189'
                         />
@@ -119,11 +113,11 @@ const Home = () => {
                     <TouchableOpacity style={styles.servicesItem}>
                         <Icon
                             name='email'
-                            size={45}
+                            size={52}
                             style={styles.servicesIcon}
                             color='#832189'
                         />
-                        <Text style={styles.servicesLabel}>
+                        <Text  style={styles.servicesLabel}>
                             Cabelereira
                         </Text>
                     </TouchableOpacity>
@@ -132,6 +126,7 @@ const Home = () => {
                 
             </View>
         </LinearGradient>
+        </ScrollView>
     );
 }
 

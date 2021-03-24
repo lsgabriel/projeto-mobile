@@ -1,4 +1,6 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions} from 'react-native';
+
+const windowWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
     container:{
@@ -9,10 +11,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     img:{
-        
         marginTop: 60,
-        height: 200,
-        width: 200,
+        height: 160,
+        width: 160,
         borderRadius: 300,
         borderWidth: 4,
         borderColor: '#832189',
@@ -21,14 +22,8 @@ const styles = StyleSheet.create({
         marginTop: 15,
     },
     subMainText:{
-        fontSize: 15,
+        fontSize: 38,
         color: '#FFF',
-        fontWeight: 'bold',
-    },
-    mainText:{
-        color: 'white',
-        fontSize: 45,
-        textAlign: 'center',
         fontWeight: 'bold',
     },
     searchBar:{
@@ -65,29 +60,29 @@ const styles = StyleSheet.create({
     },
     lineText:{
         fontWeight: 'bold',
-        fontSize: 30,
+        fontSize: 30,marginBottom:2,
         color: 'white',
         marginHorizontal: 20,
     },
     servicesContainer:{
-        flexDirection: 'row',
-        flexWrap: 'wrap',
+        flexWrap: 'wrap',marginBottom:7,
         
     },
     servicesItem:{
-        // flexBasis: '45%',
-        margin: 10,
+        flexDirection:'row',
+        marginTop: 2,
         backgroundColor: '#FFF',
-        height: 100,
-        width: 100,
-        borderRadius: 300,
+        height: 75,
+        width: windowWidth*0.90,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
     },
     servicesIcons:{
+        flex:4,
     },
     servicesLabel:{
-        fontSize: 14,
+        flex:6,
+        fontSize: 23,
         color: '#832189',
         fontWeight: 'bold',
         letterSpacing: 1,
