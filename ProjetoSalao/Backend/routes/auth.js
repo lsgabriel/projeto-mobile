@@ -1,24 +1,38 @@
 const express = require('express');
 const router = express.Router();
-const { Client } = require('../models');
+const { Client, Professional } = require('../models');
 const sha256 = require('js-sha256');
 const jwt = require('jsonwebtoken');
 
 
 router.post('/', async (req, res)=>{
-    const result = await Client.findAll({
+    const clientResult = await Client.findAll({
         where:{
-            name: req.body.name,
+            email: req.body.email,
             password: sha256("teste"+req.body.password+"15!@hklti_-=130O.asqu")
         }
     });
 
-    if(!result.length){
-        res.status(401).json({auth: false})
+    const professionalResult = await Professional.findAll({
+        where:{
+            email: req.body.email,
+            password: sha256("teste"+req.body.password+"15!@hklti_-=130O.asqu")
+        }
+    });
+
+    if(clientResult.length){
+        const token = jwt.sign({id: clientResult.id}, '@tiARA', {expiresIn: '999 years'});
+        res.status(200).json({auth: true, token: token});
     }
 
-    const token = jwt.sign({id: result.id}, '@tiARA', {expiresIn: '999 years'});
-    res.status(200).json({auth: true, token: token});
+    else if(professionalResult.length){
+        const token = jwt.sign({id: professionalResult.id}, '@tiARA', {expiresIn: '999 years'});
+        res.status(200).json({auth: true, token: token});
+    }
+
+    res.status(401).json({auth: false})
+
+    
 });
 
 module.exports = router;
