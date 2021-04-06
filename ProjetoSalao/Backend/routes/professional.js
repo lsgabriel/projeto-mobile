@@ -9,11 +9,15 @@ router.get('/', checkJWT, async(req, res)=>{
     res.status(200).json(professionals);
 });
 
-router.post('/', checkJWT, async(req, res)=>{
+router.post('/', async(req, res)=>{
     const professional = await Professional.create({
         name: req.body.name,
         password: sha256("teste"+req.body.password+"15!@hklti_-=130O.asqu"),
-        email: req.body.email
+        email: req.body.email,
+        phone: req.body.phone,
+        profile_image: req.body.profile_image,
+        type: req.body.type,
+        description: req.body.description
     });
     res.status(201).json(professional);
 });

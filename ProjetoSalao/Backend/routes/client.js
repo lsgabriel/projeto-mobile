@@ -9,11 +9,14 @@ router.get('/', checkJWT, async(req, res)=>{
     res.status(200).json(clients);
 });
 
-router.post('/', checkJWT, async(req, res)=>{
+router.post('/', async(req, res)=>{
     const client = await Client.create({
         name: req.body.name,
         password: sha256("teste"+req.body.password+"15!@hklti_-=130O.asqu"),
-        email: req.body.email
+        email: req.body.email,
+        phone: req.body.phone,
+        profile_image: req.body.profile_image,
+        birthdate: req.body.birthdate
     });
     res.status(201).json(client);
 });
