@@ -69,7 +69,7 @@ const Login = () => {
     // }, []);
 
     return(
-        <ScrollView>
+        <ScrollView contentContainerStyle={{flex:1}} >
         <Formik
             initialValues={initialValues}
         >
