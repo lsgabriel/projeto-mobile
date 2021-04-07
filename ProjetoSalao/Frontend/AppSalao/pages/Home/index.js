@@ -1,12 +1,67 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, Image, TouchableOpacity, TouchableWithoutFeedback, TouchableHighlight, ScrollView } from 'react-native';
 import { Header, SearchBar } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import data from '../Professionals/data';
 import { LinearGradient } from 'expo-linear-gradient';
 import styles from './styles';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import api from '../../services/api';
+import useAuth from '../../hooks/useAuth';
+import { useNavigation } from '@react-navigation/native';
 
 const Home = () => {
+
+    const navigation = useNavigation();
+    const [loading, setLoading] = useState(true);
+    const [token, setToken] = useState('');
+
+    const auth = useAuth();
+
+    const loadingData = async ()=>{
+        if(auth?.token !== ''){
+            try {
+                const response = await api.get('/products',{
+                    headers: { 'x-access-token': auth?.token }
+                });
+                setDados(response['data']);
+                setLoading(false);
+            } catch (error) {
+                console.log(error)
+            }
+        }
+    }
+
+    const Spinner = ()=>{
+        return (loading ? <ActivityIndicator size="large" color="#00000ff" /> : null);
+    }
+
+    const logoff = async ()=>{
+        try {
+            await AsyncStorage.removeItem('token');
+            navigation.goBack();
+        } catch (error) {
+            
+        }
+    }
+
+    // const getData = async()=>{
+    //     try {
+    //         setToken(await AsyncStorage.getItem('token'));
+    //     } catch (error) {
+    //         console.log(error);
+    //         Toast.show({
+    //             text1: 'Erro',
+    //             text2: 'Token não encontrado',
+    //             type: 'error'
+    //         });
+    //     }
+    // }
+
+    useEffect(()=>{
+        loadingData();
+        // getData();
+    }, [token]);
 
     return (
         <ScrollView>

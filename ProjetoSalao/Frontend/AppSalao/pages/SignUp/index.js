@@ -7,6 +7,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useNavigation} from '@react-navigation/native';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
+import api from '../../services/api';
 
 const CreateUserSchema = Yup.object().shape({
     email: Yup.string().email('Deve ser um email valido').required('Esse campo é obrigatorio'),
@@ -15,18 +16,31 @@ const CreateUserSchema = Yup.object().shape({
 
 const SignUp = () =>{
 
+  const navigation = useNavigation();
+
   const [eye, setEye] = useState(true);
   const [eye2, setEye2] = useState(true);
 
   const initialValues = {
+    password2 : '',
     password : '',
     email : '',
+
+  }
+
+  const postUser = async (values)=>{
+    try {
+      await api.post('/clients', values);
+      navigation.navigate('Login');
+    } catch (e) {
+      console.log(e);
+    }
   }
 
     return(
       <Formik
             initialValues={initialValues}
-            onSubmit={values => saveUser(values)}
+            onSubmit={values => postUser(values)}
             validationSchema={CreateUserSchema}
         >
 
@@ -111,7 +125,7 @@ const SignUp = () =>{
               secureTextEntry={eye2}
               inputContainerStyle={styles.inputStyles}
 
-                    value={values.password}
+                    value={values.password2}
                     onChangeText={handleChange('password')}
                     onBlur={handleBlur('password')}
                     errorMessage={errors.password  && touched.password ? errors.password : null}

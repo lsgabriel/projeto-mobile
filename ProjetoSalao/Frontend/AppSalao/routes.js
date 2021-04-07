@@ -6,8 +6,8 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Professionals from './pages/Professionals';
 import ProfessionalsDesc from './pages/ProfessionalsDesc';
-import Home from './pages/Home';
-import PerfilUser from './pages/PerfilUser';
+import Home from './pages/Home';/* 
+import PerfilUser from './pages/PerfilUser'; */
 
 const Stack = createStackNavigator();
 
@@ -15,17 +15,14 @@ const routes = () => {
     return(
         <NavigationContainer>
             <Stack.Navigator screenOptions={{headerShown:false}} >
-            <Stack.Screen name="PerfilUser" component={PerfilUser}/>
+                
+            <Stack.Screen name="Login" component={Login} />{/* 
+            <Stack.Screen name="PerfilUser" component={PerfilUser}/> */}
             <Stack.Screen name="Home" component={Home} />
-            <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Professionals" component={Professionals} />
             
             <Stack.Screen name="SignUp" component={SignUp} />
             <Stack.Screen name="ProfessionalsDesc" component={ProfessionalsDesc} />
-            
-            {/* 1- login  2- signUp 
-            3- serviços 4-perfil-usuario
-            5- profissionais 6-agenda */}
 
             </Stack.Navigator>
         </NavigationContainer>
