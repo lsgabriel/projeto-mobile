@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
         height:400,
         borderRadius:900,
         marginLeft:25,
-        marginTop: 200,
+        marginTop: 320,
         zIndex: -1
     },
     topCircle:{
