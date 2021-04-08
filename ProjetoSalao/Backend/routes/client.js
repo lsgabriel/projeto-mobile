@@ -9,6 +9,15 @@ router.get('/', checkJWT, async(req, res)=>{
     res.status(200).json(clients);
 });
 
+router.get('/:id', checkJWT, async(req, res)=>{
+    const client = await Client.findAll({
+        where: {
+            id: req.params.id
+        }
+    });
+    res.status(200).json(...client);
+});
+
 router.post('/', async(req, res)=>{
     const client = await Client.create({
         name: req.body.name,
