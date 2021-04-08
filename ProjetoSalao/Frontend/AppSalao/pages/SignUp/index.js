@@ -22,9 +22,12 @@ const SignUp = () =>{
   const [eye2, setEye2] = useState(true);
 
   const initialValues = {
+    name:'',
     password2 : '',
     password : '',
     email : '',
+    phone:'',
+    birthDate:'',
 
   }
 
@@ -64,6 +67,20 @@ const SignUp = () =>{
                       style={styles.img}
                     />
 
+                    <Input
+                      placeholder="Nome"
+                      inputContainerStyle={styles.inputStyles}
+                      leftIcon={
+                        <Icon
+                          name='person'
+                          size={24}
+                          color='#AAA'
+                        />
+                      }
+                      value={values.name}
+                      onChangeText={handleChange('name')}
+                      onBlur={handleBlur('name')}
+                    />
 
                     <Input
                       placeholder="Email"
@@ -79,6 +96,37 @@ const SignUp = () =>{
                       onChangeText={handleChange('email')}
                       onBlur={handleBlur('email')}
                       errorMessage={errors.email && touched.email ? errors.email : null}
+                    />
+
+                    
+                    <Input
+                      placeholder="Telefone"
+                      inputContainerStyle={styles.inputStyles}
+                      leftIcon={
+                        <Icon
+                          name='phone'
+                          size={24}
+                          color='#AAA'
+                        />
+                      }
+                      value={values.phone}
+                      onChangeText={handleChange('phone')}
+                      onBlur={handleBlur('phone')}
+                    />
+
+                    <Input
+                      placeholder="Data de nascimento"
+                      inputContainerStyle={styles.inputStyles}
+                      leftIcon={
+                        <Icon
+                          name='event'
+                          size={24}
+                          color='#AAA'
+                        />
+                      }
+                      value={values.birthDate}
+                      onChangeText={handleChange('birthDate')}
+                      onBlur={handleBlur('birthDate')}
                     />
 
                     <Input
@@ -132,7 +180,6 @@ const SignUp = () =>{
                       onBlur={handleBlur('password')}
                       errorMessage={errors.password && touched.password ? errors.password : null}
                     />
-
 
                     <Button
                       buttonStyle={styles.button}
