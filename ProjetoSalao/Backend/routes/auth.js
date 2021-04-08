@@ -21,13 +21,13 @@ router.post('/', async (req, res)=>{
     });
 
     if(clientResult.length){
-        const token = jwt.sign({id: clientResult.id}, '@tiARA', {expiresIn: '999 years'});
-        res.status(200).json({auth: true, token: token});
+        const token = jwt.sign({id: clientResult[0].id}, '@tiARA', {expiresIn: '999 years'});
+        res.status(200).json({auth: true, token: token, id: clientResult[0].id});
     }
 
     else if(professionalResult.length){
-        const token = jwt.sign({id: professionalResult.id}, '@tiARA', {expiresIn: '999 years'});
-        res.status(200).json({auth: true, token: token});
+        const token = jwt.sign({id: professionalResult[0].id}, '@tiARA', {expiresIn: '999 years'});
+        res.status(200).json({auth: true, token: token, id: professionalResult[0].id});
     }
 
     res.status(401).json({auth: false})
