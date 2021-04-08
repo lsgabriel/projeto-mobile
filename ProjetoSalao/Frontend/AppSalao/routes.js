@@ -19,8 +19,8 @@ const routes = () => {
             <Stack.Screen name="Login" component={Login} />{/* 
             <Stack.Screen name="PerfilUser" component={PerfilUser}/> */}
             <Stack.Screen name="Home" component={Home} />
-            <Stack.Screen name="Professionals" component={Professionals} />
             
+            <Stack.Screen name="Professionals" component={Professionals} />
             <Stack.Screen name="SignUp" component={SignUp} />
             <Stack.Screen name="ProfessionalsDesc" component={ProfessionalsDesc} />
 

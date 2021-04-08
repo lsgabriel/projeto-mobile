@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {View, Text, Image, ScrollView} from 'react-native';
+import {View, Text, Image, ScrollView, KeyboardAvoidingView, Platform} from 'react-native';
 import styles from './styles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Input, Button } from 'react-native-elements';
@@ -69,108 +69,110 @@ const Login = () => {
     // }, []);
 
     return(
-        <ScrollView contentContainerStyle={{flex:1}} >
-        <Formik
-            initialValues={initialValues}
-        >
+        <KeyboardAvoidingView style={{flex: 1}} behavior={Platform.OS === 'ios' ? 'padding' : undefined} enabled>
+            <ScrollView contentContainerStyle={{flexGrow: 1}} keyboardShouldPersistTaps='handled'>
+                <Formik
+                    initialValues={initialValues}
+                >
 
-        {({handleChange, handleSubmit, handleBlur, values, errors, touched, isValid})=>(
-        <View style={styles.container}>
-            <LinearGradient
-                // Background Linear Gradient
-                colors={['#FFDEFF', '#C833CA']}
-                style={styles.container}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 1 }}
-            >
+                    {({ handleChange, handleSubmit, handleBlur, values, errors, touched, isValid }) => (
+                        <View style={styles.container}>
+                            <LinearGradient
+                                // Background Linear Gradient
+                                colors={['#FFDEFF', '#C833CA']}
+                                style={styles.container}
+                                start={{ x: 0, y: 0 }}
+                                end={{ x: 1, y: 1 }}
+                            >
 
-           <View style={styles.form}>
-                
-                
-                <Image
-                    source={require('../../assets/logoApp.png')}
-                    style={styles.img}
-                />
-                
-
-                <Input
-                    placeholder="Email"
-                    inputContainerStyle={styles.inputStyles}
-                    leftIcon={
-                        <Icon 
-                            name='email'
-                            size={24}
-                            color='#AAA'
-                        />
-                    }
-                    value={email}
-                    onChange={(value)=> setEmail(value.nativeEvent.text)}
-                    onBlur={handleBlur('email')}
-                    errorMessage={errors.email && touched.email ? errors.email : null}
-                />
-                
-                <Input
-                    placeholder="Senha"
-                    leftIcon={
-                        <Icon 
-                            name='lock'
-                            size={24}
-                            color='#AAA'
-                        />
-                    }
-                    rightIcon={
-                        <Icon 
-                            name={eye ? 'visibility' : 'visibility-off'}
-                            size={24}
-                            color='#AAA'
-                            onPress={()=> setEye(!eye)}
-                        />
-                    }
-                    secureTextEntry={eye}
-                    inputContainerStyle={styles.inputStyles}
-
-                    value={password}
-                    onChange={(value)=> setPassword(value.nativeEvent.text)}
-                    onBlur={handleBlur('password')}
-                    errorMessage={errors.password  && touched.password ? errors.password : null}
-                />
-                <Text style={styles.resetPassword}>Esqueceu a senha?</Text>
-
-                <Button
-                    buttonStyle={styles.buttonLogin}
-                    title="LOGIN"
-                    onPress={auth}
-                />
-
-                <Button
-                    buttonStyle={styles.buttonSignup}
-                    title="SIGN UP"
-                    onPress={()=>navigation.navigate('SignUp')}
-                />
+                                <View style={styles.form}>
 
 
-                <View style={styles.topCircle}>
-                </View>
-                
-                <View style={styles.circle}>
-                <LinearGradient
-                // Background Linear Gradient
-                colors={['#EFA8F1', '#C433C7']}
-                style={styles.circle}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 1 }}
-                />
-                </View>
+                                    <Image
+                                        source={require('../../assets/logoApp.png')}
+                                        style={styles.img}
+                                    />
+
+
+                                    <Input
+                                        placeholder="Email"
+                                        inputContainerStyle={styles.inputStyles}
+                                        leftIcon={
+                                            <Icon
+                                                name='email'
+                                                size={24}
+                                                color='#AAA'
+                                            />
+                                        }
+                                        value={email}
+                                        onChange={(value) => setEmail(value.nativeEvent.text)}
+                                        onBlur={handleBlur('email')}
+                                        errorMessage={errors.email && touched.email ? errors.email : null}
+                                    />
+
+                                    <Input
+                                        placeholder="Senha"
+                                        leftIcon={
+                                            <Icon
+                                                name='lock'
+                                                size={24}
+                                                color='#AAA'
+                                            />
+                                        }
+                                        rightIcon={
+                                            <Icon
+                                                name={eye ? 'visibility' : 'visibility-off'}
+                                                size={24}
+                                                color='#AAA'
+                                                onPress={() => setEye(!eye)}
+                                            />
+                                        }
+                                        secureTextEntry={eye}
+                                        inputContainerStyle={styles.inputStyles}
+
+                                        value={password}
+                                        onChange={(value) => setPassword(value.nativeEvent.text)}
+                                        onBlur={handleBlur('password')}
+                                        errorMessage={errors.password && touched.password ? errors.password : null}
+                                    />
+                                    <Text style={styles.resetPassword}>Esqueceu a senha?</Text>
+
+                                    <Button
+                                        buttonStyle={styles.buttonLogin}
+                                        title="LOGIN"
+                                        onPress={auth}
+                                    />
+
+                                    <Button
+                                        buttonStyle={styles.buttonSignup}
+                                        title="SIGN UP"
+                                        onPress={() => navigation.navigate('SignUp')}
+                                    />
+
+
+                                    <View style={styles.topCircle}>
+                                    </View>
+
+                                    <View style={styles.circle}>
+                                        <LinearGradient
+                                            // Background Linear Gradient
+                                            colors={['#EFA8F1', '#C433C7']}
+                                            style={styles.circle}
+                                            start={{ x: 0, y: 0 }}
+                                            end={{ x: 1, y: 1 }}
+                                        />
+                                    </View>
 
 
 
-            </View>  
-        
-        </LinearGradient>
-        </View>
-        )}
-        </Formik>
-        </ScrollView>
+                                </View>
+
+                            </LinearGradient>
+                        </View>
+                    )}
+                </Formik>
+            </ScrollView>
+        </KeyboardAvoidingView>
     );
 }
 
