@@ -9,20 +9,23 @@ import ProfessionalsDesc from './pages/ProfessionalsDesc';
 import Home from './pages/Home';/* 
 import PerfilUser from './pages/PerfilUser'; */
 
+
 const Stack = createStackNavigator();
 
 const routes = () => {
-    return(
+    return (
         <NavigationContainer>
-            <Stack.Navigator screenOptions={{headerShown:false}} >
-                
-            <Stack.Screen name="Login" component={Login} />
-            <Stack.Screen name="SignUp" component={SignUp} />
-            <Stack.Screen name="Home" component={Home} />
-            
-            {/* <Stack.Screen name="PerfilUser" component={PerfilUser}/> */}
-            <Stack.Screen name="Professionals" component={Professionals} />
-            <Stack.Screen name="ProfessionalsDesc" component={ProfessionalsDesc} />
+            <Stack.Navigator screenOptions={{ headerShown: false }} >
+
+                <Stack.Screen name="Login" component={Login} />
+                <Stack.Screen name="SignUp" component={SignUp} />
+
+
+                <Stack.Screen name="Home" component={Home} />
+
+                {/* <Stack.Screen name="PerfilUser" component={PerfilUser}/> */}
+                <Stack.Screen name="Professionals" component={Professionals} />
+                <Stack.Screen name="ProfessionalsDesc" component={ProfessionalsDesc} />
 
             </Stack.Navigator>
         </NavigationContainer>

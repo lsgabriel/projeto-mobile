@@ -12,6 +12,9 @@ import api from '../../services/api';
 const CreateUserSchema = Yup.object().shape({
     email: Yup.string().email('Deve ser um email valido').required('Esse campo é obrigatorio'),
     password: Yup.string().required('Esse campo é obrigatorio'),
+    passwordConfirmation: Yup.string()
+      .oneOf([Yup.ref('password'), null], 'As senhas devem ser iguais')
+      .required('Esse campo é obrigatório')
 });
 
 const SignUp = () =>{
@@ -23,7 +26,7 @@ const SignUp = () =>{
 
   const initialValues = {
     name:'',
-    password2 : '',
+    passwordConfirmation : '',
     password : '',
     email : '',
     phone:'',
@@ -96,6 +99,8 @@ const SignUp = () =>{
                       onChangeText={handleChange('email')}
                       onBlur={handleBlur('email')}
                       errorMessage={errors.email && touched.email ? errors.email : null}
+
+                      errorStyle={{ color: '#fff' }}
                     />
 
                     
@@ -153,6 +158,8 @@ const SignUp = () =>{
                       onChangeText={handleChange('password')}
                       onBlur={handleBlur('password')}
                       errorMessage={errors.password && touched.password ? errors.password : null}
+
+                      errorStyle={{ color: '#fff' }}
                     />
 
                     <Input
@@ -175,13 +182,18 @@ const SignUp = () =>{
                       secureTextEntry={eye2}
                       inputContainerStyle={styles.inputStyles}
 
-                      value={values.password2}
-                      onChangeText={handleChange('password')}
-                      onBlur={handleBlur('password')}
-                      errorMessage={errors.password && touched.password ? errors.password : null}
+                      value={values.passwordConfirmation}
+                      onChangeText={handleChange('passwordConfirmation')}
+                      onBlur={handleBlur('passwordConfirmation')}
+                      errorMessage={
+                        errors.passwordConfirmation && 
+                        touched.passwordConfirmation ? errors.passwordConfirmation : null
+                      }
+                      errorStyle={{ color: '#fff' }}
                     />
 
                     <Button
+                      disabled={!isValid}
                       buttonStyle={styles.button}
                       title="Cadastre-se"
                       onPress={handleSubmit}

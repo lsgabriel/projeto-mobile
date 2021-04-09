@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image, TouchableOpacity, TouchableWithoutFeedback, TouchableHighlight, ScrollView } from 'react-native';
-import { Header, SearchBar } from 'react-native-elements';
+import { Header, SearchBar, Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import data from '../Professionals/data';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -52,14 +52,14 @@ const Home = () => {
         return (loading ? <ActivityIndicator size="large" color="#00000ff" /> : null);
     }
 
-    // const logoff = async ()=>{
-    //     try {
-    //         await AsyncStorage.removeItem('token');
-    //         navigation.goBack();
-    //     } catch (error) {
+    const logoff = async ()=>{
+        try {
+         await AsyncStorage.removeItem('auth');
+         navigation.navigate('Login');
+     } catch (error) {
             
-    //     }
-    // }
+        }
+    }
 
     // const getData = async()=>{
     //     try {
@@ -89,6 +89,13 @@ const Home = () => {
             end={{ x: 1, y: 1 }}
         >
             <View style={styles.main}>
+                
+                <Button
+                    title="Logoff"
+                    buttonStyle={styles.logoffButton}
+                    onPress={logoff}
+                />
+
                 {/* <Header 
                         style = {styles.header}
                     /> */}
