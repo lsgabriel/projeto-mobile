@@ -64,10 +64,10 @@ const Login = () => {
     }
 
     useEffect(()=>{
-        if(authentication?.token != ''){
+        if(authentication?.token){
             navigation.navigate('Home');
         }
-    }, []);
+    }, [authentication]);
 
     return(
         <KeyboardAvoidingView style={{flex: 1}} behavior={Platform.OS === 'ios' ? 'padding' : undefined} enabled>
