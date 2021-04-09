@@ -14,36 +14,52 @@ const Home = () => {
 
     const navigation = useNavigation();
     const [loading, setLoading] = useState(true);
-    const [token, setToken] = useState('');
+    const [dados, setDados] = useState();
 
     const auth = useAuth();
 
     const loadingData = async ()=>{
         if(auth?.token !== ''){
             try {
-                const response = await api.get('/products',{
+                const id = await getDataStorage();
+                console.log(id);
+
+                const response = await api.get(`/clients/${id}` ,{
                     headers: { 'x-access-token': auth?.token }
                 });
-                setDados(response['data']);
+
+                setDados(response);
+                console.log(response);
                 setLoading(false);
+
             } catch (error) {
                 console.log(error)
             }
         }
     }
 
+    const getDataStorage = async ()=>{
+        try {
+            let auth = await AsyncStorage.getItem('auth');
+            auth = JSON.parse(auth);
+            return auth.id;
+        } catch (e) {
+            console.log(e);
+        }
+    }
+    
     const Spinner = ()=>{
         return (loading ? <ActivityIndicator size="large" color="#00000ff" /> : null);
     }
 
-    const logoff = async ()=>{
-        try {
-            await AsyncStorage.removeItem('token');
-            navigation.goBack();
-        } catch (error) {
+    // const logoff = async ()=>{
+    //     try {
+    //         await AsyncStorage.removeItem('token');
+    //         navigation.goBack();
+    //     } catch (error) {
             
-        }
-    }
+    //     }
+    // }
 
     // const getData = async()=>{
     //     try {
@@ -57,18 +73,18 @@ const Home = () => {
     //         });
     //     }
     // }
-
+    
     useEffect(()=>{
         loadingData();
         // getData();
-    }, [token]);
+    }, []);
 
     return (
-        <ScrollView>
+        <ScrollView contentContainerStyle={{flexGrow: 1}}>
         <LinearGradient
             // Background Linear Gradient
             colors={['#FFDEFF', '#C833CA']}
-            style={styles.mainContainer}
+            // style={styles.mainContainer}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 1 }}
         >
@@ -89,7 +105,7 @@ const Home = () => {
                     <Text
                         style={styles.subMainText}
                     >
-                        Olá, {data[1].Pname}
+                        Olá, 
                     </Text>
                 </View>
 
@@ -127,7 +143,7 @@ const Home = () => {
                     
                 </View>
 
-                <View style={styles.servicesContainer}>
+                <ScrollView style={styles.servicesContainer} horizontal={true}>
                     
                     <TouchableOpacity style={styles.servicesItem}>
                         <Icon
@@ -177,7 +193,7 @@ const Home = () => {
                         </Text>
                     </TouchableOpacity>
 
-                </View>
+                </ScrollView>
                 
             </View>
         </LinearGradient>

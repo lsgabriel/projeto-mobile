@@ -53,8 +53,9 @@ const Login = () => {
 
     const getDataStorage = async ()=>{
         try {
-            const token = await AsyncStorage.getItem('auth');
-            if(token !== null){
+            let auth = await AsyncStorage.getItem('auth');
+            auth = JSON.parse(auth);
+            if(auth.token !== null){
                 navigation.navigate('Home');
             }
         } catch (e) {
@@ -62,11 +63,11 @@ const Login = () => {
         }
     }
 
-    // useEffect(()=>{
-    //     if(authentication?.token != ''){
-    //         navigation.navigate('Home');
-    //     }
-    // }, []);
+    useEffect(()=>{
+        if(authentication?.token != ''){
+            navigation.navigate('Home');
+        }
+    }, []);
 
     return(
         <KeyboardAvoidingView style={{flex: 1}} behavior={Platform.OS === 'ios' ? 'padding' : undefined} enabled>
