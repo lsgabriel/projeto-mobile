@@ -3,7 +3,11 @@ import { StyleSheet, Dimensions} from 'react-native';
 const windowWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
-    logoffButton:{marginTop:50},
+    logoffButton:{
+        marginTop:40,backgroundColor:'#F128F5',
+        width:100,borderBottomEndRadius:10,
+        borderBottomStartRadius:10,padding:7,
+    },
     container:{
         height:'100%',
         width: '100%',
