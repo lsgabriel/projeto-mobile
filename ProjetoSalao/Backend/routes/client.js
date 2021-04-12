@@ -30,6 +30,15 @@ router.post('/', async(req, res)=>{
     res.status(201).json(client);
 });
 
+router.put('/:id', checkJWT, async (req, res) => {
+    const client = await Client.update(req.body, {
+        where:{
+            id: req.params.id
+        }
+    });
+    res.status(200).json(client);
+});
+
 router.delete('/:id', checkJWT, async(req, res)=>{
     const client = await Client.destroy({
         where: {
