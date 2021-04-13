@@ -30,13 +30,10 @@ const Login = () => {
         email : '',
     }
 
-    const auth = async()=>{
-        console.log(`email: ${email} senha: ${password}`)
+    const auth = async(values)=>{
+        console.log(`email: ${values.email} \nsenha: ${values.password}`)
         try {
-            const response = await api.post('/login',{
-                email: email,
-                password: password
-            });
+            const response = await api.post('/login',values);
             setDataStorage('auth', JSON.stringify(response.data));
         } catch (e) {
             console.log(e);
@@ -71,13 +68,12 @@ const Login = () => {
     }, [authentication]);
 
     return(
-        <KeyboardAvoidingView style={{flex: 1}} behavior={Platform.OS === 'ios' ? 'padding' : undefined} enabled>
-            <ScrollView contentContainerStyle={{flexGrow: 1}} keyboardShouldPersistTaps='handled'>
+        <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined} enabled>
+            <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps='handled'>
                 <Formik
-                    initialValues={{email, password}}
-                    onSubmit={auth}
+                    initialValues={initialValues}
+                    onSubmit={values => auth(values)}
                 >
-
                     {({ handleChange, handleSubmit, handleBlur, values, errors, touched, isValid, setFieldValue }) => (
                         <View style={styles.container}>
                             <LinearGradient
@@ -87,16 +83,11 @@ const Login = () => {
                                 start={{ x: 0, y: 0 }}
                                 end={{ x: 1, y: 1 }}
                             >
-
                                 <View style={styles.form}>
-
-
                                     <Image
                                         source={require('../../assets/logoApp.png')}
                                         style={styles.img}
                                     />
-
-
                                     <Input
                                         placeholder="Email"
                                         inputContainerStyle={styles.inputStyles}
@@ -108,11 +99,10 @@ const Login = () => {
                                             />
                                         }
                                         value={values.email}
-                                        onChangeText={ handleChange('email') }
-                                        // onBlur={handleBlur('email')}
-                                        // errorMessage={errors.email && touched.email ? errors.email : null}
+                                        onChangeText={handleChange('email')}
+                                    // onBlur={handleBlur('email')}
+                                    // errorMessage={errors.email && touched.email ? errors.email : null}
                                     />
-
                                     <Input
                                         placeholder="Senha"
                                         leftIcon={
@@ -132,30 +122,24 @@ const Login = () => {
                                         }
                                         secureTextEntry={eye}
                                         inputContainerStyle={styles.inputStyles}
-
                                         value={values.password}
-                                        onChangeText={ handleChange('password') }
-                                        // onBlur={handleBlur('password')}
-                                        // errorMessage={errors.password && touched.password ? errors.password : null}
+                                        onChangeText={handleChange('password')}
+                                    // onBlur={handleBlur('password')}
+                                    // errorMessage={errors.password && touched.password ? errors.password : null}
                                     />
                                     <Text style={styles.resetPassword}>Esqueceu a senha?</Text>
-
                                     <Button
                                         buttonStyle={styles.buttonLogin}
                                         title="LOGIN"
-                                        onPress={()=> handleSubmit()}
+                                        onPress={handleSubmit}
                                     />
-
                                     <Button
                                         buttonStyle={styles.buttonSignup}
                                         title="SIGN UP"
                                         onPress={() => navigation.navigate('SignUp')}
                                     />
-
-
                                     <View style={styles.topCircle}>
                                     </View>
-
                                     <View style={styles.circle}>
                                         <LinearGradient
                                             // Background Linear Gradient
@@ -165,11 +149,7 @@ const Login = () => {
                                             end={{ x: 1, y: 1 }}
                                         />
                                     </View>
-
-
-
                                 </View>
-
                             </LinearGradient>
                         </View>
                     )}
