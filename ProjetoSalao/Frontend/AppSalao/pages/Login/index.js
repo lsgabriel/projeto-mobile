@@ -31,9 +31,11 @@ const Login = () => {
     }
 
     const auth = async(values)=>{
-        console.log(`email: ${values.email} \nsenha: ${values.password}`)
         try {
-            const response = await api.post('/login',values);
+            const response = await api.post('/login', {
+                email: values.email,
+                password: values.password
+            });
             setDataStorage('auth', JSON.stringify(response.data));
         } catch (e) {
             console.log(e);
@@ -71,8 +73,9 @@ const Login = () => {
         <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined} enabled>
             <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps='handled'>
                 <Formik
-                    initialValues={initialValues}
-                    onSubmit={values => auth(values)}
+                    initialValues={{email, password}}
+                    onSubmit={auth}
+                    enableReinitialize
                 >
                     {({ handleChange, handleSubmit, handleBlur, values, errors, touched, isValid, setFieldValue }) => (
                         <View style={styles.container}>
@@ -131,7 +134,7 @@ const Login = () => {
                                     <Button
                                         buttonStyle={styles.buttonLogin}
                                         title="LOGIN"
-                                        onPress={handleSubmit}
+                                        onPress={()=>handleSubmit()}
                                     />
                                     <Button
                                         buttonStyle={styles.buttonSignup}

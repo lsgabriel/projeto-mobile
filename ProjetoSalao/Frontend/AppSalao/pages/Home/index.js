@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { View, Text, Image, TouchableOpacity, TouchableWithoutFeedback, TouchableHighlight, ScrollView } from 'react-native';
 import { Header, SearchBar, Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -7,7 +7,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import styles from './styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import api from '../../services/api';
-import useAuth from '../../hooks/useAuth';
+/* import useAuth from '../../hooks/useAuth'; */
 import { useNavigation } from '@react-navigation/native';
 
 const Home = () => {
@@ -16,29 +16,25 @@ const Home = () => {
     const [loading, setLoading] = useState(true);
     const [dados, setDados] = useState();
 
-    const auth = useAuth();
+    /* const auth = useAuth(); */
 
-    const loadingData = async ()=>{
-        if(auth?.token !== ''){
+    const loadingData = useCallback(async ()=>{
             try {
-                const id = await getDataStorage();
-                console.log(id);
+                const respAuth = JSON.parse(await AsyncStorage.getItem('auth'))
 
-                const response = await api.get(`/clients/${id}` ,{
-                    headers: { 'x-access-token': auth?.token }
+                const response = await api.get(`/clients/${respAuth.id}` ,{
+                    headers: { 'x-access-token': respAuth?.token }
                 });
 
-                setDados(response);
-                console.log(response.data.name);
+                setDados(response.data);
                 setLoading(false);
 
             } catch (error) {
                 console.log(error);
             }
-        }
-    }
+    }, []);
 
-    const getDataStorage = async ()=>{
+  /*   const getDataStorage = async ()=>{
         try {
             let auth = await AsyncStorage.getItem('auth');
             auth = JSON.parse(auth);
@@ -47,7 +43,7 @@ const Home = () => {
             console.log(e);
         }
     }
-    
+     */
     const Spinner = ()=>{
         return (loading ? <ActivityIndicator size="large" color="#00000ff" /> : null);
     }
@@ -76,9 +72,7 @@ const Home = () => {
     
     useEffect(()=>{
         loadingData();
-        // logoff();
-        // getData();
-    }, []);
+    }, [loadingData]);
 
     return (
         <ScrollView contentContainerStyle={{flexGrow: 1}}>
@@ -105,7 +99,7 @@ const Home = () => {
                     onPress={()=>console.log('teste')}
                 >
                     <Image
-                        source={{ uri: dados === undefined ? null : dados.data.profile_image }}
+                        source={{ uri: dados === undefined ? null : dados.profile_image }}
                         style={styles.img}
                     />
                 </TouchableWithoutFeedback>
@@ -113,7 +107,7 @@ const Home = () => {
                     <Text
                         style={styles.subMainText}
                     >
-                        Olá, {dados === undefined ? 'Undefined' : dados.data.name}
+                        Olá, {dados === undefined ? 'Undefined' : dados.name}
                     </Text>
                 </View>
 
