@@ -10,6 +10,7 @@ import * as Yup from 'yup';
 import useAuth from '../../hooks/useAuth';
 import api from '../../services/api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Alert } from 'react-native';
 
 const LoginSchema = Yup.object().shape({
     email: Yup.string().email('Deve ser um email valido').required('Esse campo é obrigatorio'),
@@ -36,13 +37,19 @@ const Login = () => {
                 email: values.email,
                 password: values.password
             });
-            setDataStorage('auth', JSON.stringify(response.data));
+            if(response.data.auth){
+                await AsyncStorage.setItem('auth', JSON.stringify(response.data));
+                navigation.navigate('Home');
+            } else{
+                Alert.alert('não encontrado');
+            }
+            
         } catch (e) {
             console.log(e);
         }
     }
 
-    const setDataStorage = async (key, value)=>{
+   /*  const setDataStorage = async (key, value)=>{
         try {
             await AsyncStorage.setItem(key, value)
             getDataStorage();
@@ -61,7 +68,7 @@ const Login = () => {
         } catch (e) {
             console.log(e);
         }
-    }
+    } */
 
     useEffect(()=>{
         if(authentication?.token){

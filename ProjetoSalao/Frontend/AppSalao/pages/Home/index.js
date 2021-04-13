@@ -153,6 +153,7 @@ const Home = () => {
                             size={52}
                             style={styles.servicesIcon}
                             color='#832189'
+                            onPress={navigation.navigate('Professionals')}
                         />
                         <Text style={styles.servicesLabel}>
                             Manicure
@@ -165,6 +166,7 @@ const Home = () => {
                             size={52}
                             style={styles.servicesIcon}
                             color='#832189'
+                            onPress={navigation.navigate('Professionals')}
                         />
                         <Text style={styles.servicesLabel}>
                             Maquiagem
@@ -177,6 +179,7 @@ const Home = () => {
                             size={52}
                             style={styles.servicesIcon}
                             color='#832189'
+                            onPress={navigation.navigate('Professionals')}
                         />
                         <Text style={styles.servicesLabel}>
                             Massagem
@@ -189,6 +192,7 @@ const Home = () => {
                             size={52}
                             style={styles.servicesIcon}
                             color='#832189'
+                            onPress={navigation.navigate('Professionals')}
                         />
                         <Text  style={styles.servicesLabel}>
                             Cabelereira

@@ -4,8 +4,11 @@ import { Header, Icon, SearchBar } from 'react-native-elements';
 import styles from './styles';
 import ProfessionalListItem from '../../components/ProfessionalListItem';
 import data from './data';
+import { useNavigation } from '@react-navigation/native';
 
 const Professionals = () => {
+    const navigation = useNavigation();
+
     return (
         <View>
             <Header
