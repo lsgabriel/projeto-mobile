@@ -7,7 +7,9 @@ const useAuth = () => {
 
     const getData= async () => {
         try{
-            setAuth(await AsyncStorage.getItem('auth'));
+            const resp = await AsyncStorage.getItem('auth');
+            if(resp !== null)
+                setAuth(resp);
         } catch (error) {
             console.log(error);
         }
@@ -15,9 +17,9 @@ const useAuth = () => {
 
    useEffect(() => {
        getData();
-   }, [auth])
+   }, [])
 
-   return (auth != '' ? JSON.parse(auth) : null);
+   return (auth !== '' ? JSON.parse(auth) : null);
 }
 
 export default useAuth;

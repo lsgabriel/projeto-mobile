@@ -31,6 +31,7 @@ const Login = () => {
     }
 
     const auth = async()=>{
+        console.log(`email: ${email} senha: ${password}`)
         try {
             const response = await api.post('/login',{
                 email: email,
@@ -73,10 +74,11 @@ const Login = () => {
         <KeyboardAvoidingView style={{flex: 1}} behavior={Platform.OS === 'ios' ? 'padding' : undefined} enabled>
             <ScrollView contentContainerStyle={{flexGrow: 1}} keyboardShouldPersistTaps='handled'>
                 <Formik
-                    initialValues={initialValues}
+                    initialValues={{email, password}}
+                    onSubmit={auth}
                 >
 
-                    {({ handleChange, handleSubmit, handleBlur, values, errors, touched, isValid }) => (
+                    {({ handleChange, handleSubmit, handleBlur, values, errors, touched, isValid, setFieldValue }) => (
                         <View style={styles.container}>
                             <LinearGradient
                                 // Background Linear Gradient
@@ -105,10 +107,10 @@ const Login = () => {
                                                 color='#AAA'
                                             />
                                         }
-                                        value={email}
-                                        onChange={(value) => setEmail(value.nativeEvent.text)}
-                                        onBlur={handleBlur('email')}
-                                        errorMessage={errors.email && touched.email ? errors.email : null}
+                                        value={values.email}
+                                        onChangeText={ handleChange('email') }
+                                        // onBlur={handleBlur('email')}
+                                        // errorMessage={errors.email && touched.email ? errors.email : null}
                                     />
 
                                     <Input
@@ -131,17 +133,17 @@ const Login = () => {
                                         secureTextEntry={eye}
                                         inputContainerStyle={styles.inputStyles}
 
-                                        value={password}
-                                        onChange={(value) => setPassword(value.nativeEvent.text)}
-                                        onBlur={handleBlur('password')}
-                                        errorMessage={errors.password && touched.password ? errors.password : null}
+                                        value={values.password}
+                                        onChangeText={ handleChange('password') }
+                                        // onBlur={handleBlur('password')}
+                                        // errorMessage={errors.password && touched.password ? errors.password : null}
                                     />
                                     <Text style={styles.resetPassword}>Esqueceu a senha?</Text>
 
                                     <Button
                                         buttonStyle={styles.buttonLogin}
                                         title="LOGIN"
-                                        onPress={auth}
+                                        onPress={()=> handleSubmit()}
                                     />
 
                                     <Button

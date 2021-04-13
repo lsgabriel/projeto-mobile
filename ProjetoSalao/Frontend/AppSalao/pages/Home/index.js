@@ -29,11 +29,11 @@ const Home = () => {
                 });
 
                 setDados(response);
-                console.log(response);
+                console.log(response.data.name);
                 setLoading(false);
 
             } catch (error) {
-                console.log(error)
+                console.log(error);
             }
         }
     }
@@ -76,6 +76,7 @@ const Home = () => {
     
     useEffect(()=>{
         loadingData();
+        // logoff();
         // getData();
     }, []);
 
@@ -89,7 +90,7 @@ const Home = () => {
             end={{ x: 1, y: 1 }}
         >
             <View style={styles.main}>
-                
+
                 <Button
                     title="Logoff"
                     buttonStyle={styles.logoffButton}
@@ -100,11 +101,11 @@ const Home = () => {
                         style = {styles.header}
                     /> */}
                 <TouchableWithoutFeedback
-                    // onPress={navigator.navigate('Perfil')}
+                    // onPress={navigator.navigate('PerfilUser')}
                     onPress={()=>console.log('teste')}
                 >
                     <Image
-                        source={{ uri: data[1].Ppic }}
+                        source={{ uri: dados === undefined ? null : dados.data.profile_image }}
                         style={styles.img}
                     />
                 </TouchableWithoutFeedback>
@@ -112,7 +113,7 @@ const Home = () => {
                     <Text
                         style={styles.subMainText}
                     >
-                        Olá, 
+                        Olá, {dados === undefined ? 'Undefined' : dados.data.name}
                     </Text>
                 </View>
 
