@@ -3,11 +3,39 @@ const router = express.Router();
 const {Professional} = require('../models');
 const sha256 = require('js-sha256');
 const checkJWT = require('../middlewares/auth');
+const { Op } = require("sequelize");
 
 router.get('/', checkJWT, async(req, res)=>{
     const professionals = await Professional.findAll();
     res.status(200).json(professionals);
 });
+
+router.get('/search/:name', checkJWT, async(req, res)=>{
+    const professionals = await Professional.findAll({
+        where:{
+            name: { [Op.like]: '%' + req.params.name + '%' }
+        }
+    });
+    res.status(200).json(professionals);
+});
+
+router.get('/search/:type', checkJWT, async(req, res)=>{
+    const professionals = await Professional.findAll({
+        where:{
+            type: req.params.type
+        }
+    });
+    res.status(200).json(professionals);
+});
+
+router.put('/:id', checkJWT, async(req, res)=>{
+    const professional = await Professional.update(req.body, {
+        where:{
+            id: req.params.id
+        }
+    });
+    res.status(200).json(professional);
+})
 
 router.post('/', async(req, res)=>{
     const professional = await Professional.create({
