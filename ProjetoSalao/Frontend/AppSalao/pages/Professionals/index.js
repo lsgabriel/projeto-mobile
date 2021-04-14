@@ -1,13 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, FlatList } from 'react-native';
 import { Header, Icon, SearchBar } from 'react-native-elements';
 import styles from './styles';
 import ProfessionalListItem from '../../components/ProfessionalListItem';
-import data from './data';
+// import data from './data';
 import { useNavigation } from '@react-navigation/native';
 
 const Professionals = () => {
     const navigation = useNavigation();
+    const [dados, setDados] = useState();
+
+    const loadingData = useCallback(async ()=>{
+        try {
+            const respAuth = JSON.parse(await AsyncStorage.getItem('auth'))
+
+            const response = await api.get(`/professionals` ,{
+                headers: { 'x-access-token': respAuth?.token }
+            });
+
+            setDados(response.data);
+
+        } catch (error) {
+            console.log(error);
+        }
+    }, []);
+
+    useEffect(()=>{
+        loadingData();
+    }, []);
 
     return (
         <View>
@@ -30,9 +50,9 @@ const Professionals = () => {
                 lightTheme
             />
             <FlatList
-                data={data}
+                data={dados}
                 renderItem={({item})=> <ProfessionalListItem item={item} />}
-                keyExtractor={item=>String(item.id)}
+                keyExtractor={(item, index)=> item + index}
             />
         </View>
     )

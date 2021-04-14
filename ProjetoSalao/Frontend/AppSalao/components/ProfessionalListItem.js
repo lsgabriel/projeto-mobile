@@ -15,7 +15,7 @@ const ProfessionalListItem = ({item})=>{
                 source={{uri:item.Ppic}}
             />
             <View style={styles.container}>
-                <Text style={styles.title}>{item.Pname}</Text>
+                <Text style={styles.title}>{item.name}</Text>
                 <Text style={styles.desc}>{item.Pdesc}</Text>
             </View>
             <TouchableOpacity style={styles.button}

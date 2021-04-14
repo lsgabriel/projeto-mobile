@@ -153,7 +153,7 @@ const Home = () => {
                             size={52}
                             style={styles.servicesIcon}
                             color='#832189'
-                            onPress={navigation.navigate('Professionals')}
+                            onPress={()=>navigation.navigate('Professionals')}
                         />
                         <Text style={styles.servicesLabel}>
                             Manicure
