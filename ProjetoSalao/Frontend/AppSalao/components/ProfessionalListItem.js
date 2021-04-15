@@ -12,11 +12,11 @@ const ProfessionalListItem = ({item})=>{
             />
             <Image
                 style={styles.img}
-                source={{uri:item.Ppic}}
+                source={{uri:item.profile_image}}
             />
             <View style={styles.container}>
                 <Text style={styles.title}>{item.name}</Text>
-                <Text style={styles.desc}>{item.Pdesc}</Text>
+                <Text style={styles.desc}>{item.description}</Text>
             </View>
             <TouchableOpacity style={styles.button}
                 onPress={()=>{ navigation.navigate('ProfessionalsDesc', item) }}

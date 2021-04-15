@@ -12,7 +12,7 @@ const ProfessionalsDesc = ({route})=>{
     const [Pfav, setPfav] = useState(item.Pfav);
     
     const sendMessage = ()=>{
-        const message = `Olá ${item.Pname}, gostaria de agendar um horário com você.`;
+        const message = `Olá ${item.name}, gostaria de agendar um horário com você.`;
         const url = `whatsapp://send?text=${message}&phone=5516997491972`;
         Linking.openURL(url);
     }   
@@ -35,19 +35,24 @@ const ProfessionalsDesc = ({route})=>{
                 onPress={()=> setPfav(!Pfav)}
             />
             <Image
-                source={{uri:item.Ppic}}
+                source={{uri:item.profile_image}}
                 style={styles.img}
             />
 
             <Text
                 style={styles.title}
             >
-            {item.Pname}</Text>
+            {item.name}</Text>
 
             <Text
                 style={styles.desc}
             >
-            {item.Pdesc}</Text>
+            {item.description}</Text>
+            <Text
+                style={styles.desc}
+            >
+            {item.type}
+            </Text>
             <Button
                 buttonStyle={styles.button}
                 onPress={sendMessage}

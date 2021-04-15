@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { View, Text, FlatList } from 'react-native';
 import { Header, Icon, SearchBar } from 'react-native-elements';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import api from '../../services/api';
 import styles from './styles';
 import ProfessionalListItem from '../../components/ProfessionalListItem';
 // import data from './data';
@@ -13,13 +15,10 @@ const Professionals = () => {
     const loadingData = useCallback(async ()=>{
         try {
             const respAuth = JSON.parse(await AsyncStorage.getItem('auth'))
-
             const response = await api.get(`/professionals` ,{
                 headers: { 'x-access-token': respAuth?.token }
-            });
-
+            });    
             setDados(response.data);
-
         } catch (error) {
             console.log(error);
         }
@@ -52,7 +51,7 @@ const Professionals = () => {
             <FlatList
                 data={dados}
                 renderItem={({item})=> <ProfessionalListItem item={item} />}
-                keyExtractor={(item, index)=> item + index}
+                keyExtractor={(item)=> String(item.id)}
             />
         </View>
     )

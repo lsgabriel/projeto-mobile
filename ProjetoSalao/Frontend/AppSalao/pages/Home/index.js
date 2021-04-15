@@ -147,7 +147,9 @@ const Home = () => {
 
                 <ScrollView style={styles.servicesContainer} horizontal={true}>
                     
-                    <TouchableOpacity style={styles.servicesItem}>
+                    <TouchableOpacity style={styles.servicesItem}
+                        onPress={()=>navigation.navigate('Professionals')}
+                    >
                         <Icon
                             name='email'
                             size={52}
