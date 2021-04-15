@@ -10,6 +10,15 @@ router.get('/', checkJWT, async(req, res)=>{
     res.status(200).json(professionals);
 });
 
+router.get('/:id', checkJWT, async(req, res)=>{
+    const professional = await Professional.findAll({
+        where: {
+            id: req.params.id
+        }
+    });
+    res.status(200).json(...professional);
+});
+
 router.get('/search/:name', checkJWT, async(req, res)=>{
     const professionals = await Professional.findAll({
         where:{
@@ -19,7 +28,7 @@ router.get('/search/:name', checkJWT, async(req, res)=>{
     res.status(200).json(professionals);
 });
 
-router.get('/search/:type', checkJWT, async(req, res)=>{
+router.get('/filter/:type', checkJWT, async(req, res)=>{
     const professionals = await Professional.findAll({
         where:{
             type: req.params.type
@@ -35,7 +44,7 @@ router.put('/:id', checkJWT, async(req, res)=>{
         }
     });
     res.status(200).json(professional);
-})
+});
 
 router.post('/', async(req, res)=>{
     const professional = await Professional.create({
