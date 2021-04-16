@@ -24,7 +24,6 @@ const Professionals = () => {
     const loadingData = useCallback(async ()=>{
 
         try {
-            console.log('TESTE')
           /*   if(auth.token){ */
                 let response;
                 if (search === '') {
