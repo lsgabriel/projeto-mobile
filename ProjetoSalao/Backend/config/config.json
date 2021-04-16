@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "j9u911d64ucdskt3",
-    "password": "lt7nov2xz1iumlog",
+    "password": "f5iq026g4fzr8uzv",
     "database": "r2hdyfmptjw2h253",
     "host": "lyn7gfxo996yjjco.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
@@ -15,7 +15,7 @@
   },
   "production": {
     "username": "j9u911d64ucdskt3",
-    "password": "lt7nov2xz1iumlog",
+    "password": "f5iq026g4fzr8uzv",
     "database": "r2hdyfmptjw2h253",
     "host": "lyn7gfxo996yjjco.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
