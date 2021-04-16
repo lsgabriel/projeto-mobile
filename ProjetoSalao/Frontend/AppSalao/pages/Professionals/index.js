@@ -7,26 +7,48 @@ import styles from './styles';
 import ProfessionalListItem from '../../components/ProfessionalListItem';
 // import data from './data';
 import { useNavigation } from '@react-navigation/native';
+import useAuth from '../../hooks/useAuth';
 
 const Professionals = () => {
     const navigation = useNavigation();
     const [dados, setDados] = useState();
+    const [search, setSearch] = useState('');
+    const auth = useAuth(); 
+    /* const [auth, setAuth] = useState();
+
+    const getAuth = useCallback(async ()=>{
+        const respAuth = JSON.parse(await AsyncStorage.getItem('auth'));
+        setAuth(respAuth);
+    },[]) */
 
     const loadingData = useCallback(async ()=>{
+
         try {
-            const respAuth = JSON.parse(await AsyncStorage.getItem('auth'))
-            const response = await api.get(`/professionals` ,{
-                headers: { 'x-access-token': respAuth?.token }
-            });    
-            setDados(response.data);
+            console.log('TESTE')
+          /*   if(auth.token){ */
+                let response;
+                if (search === '') {
+                    response = await api.get(`/professionals`, {
+                        headers: { 'x-access-token': auth.token }
+                    });
+                }
+                else {
+                    response = await api.get(`/professionals/search/${search}`, {
+                        headers: { 'x-access-token': auth.token }
+                    });
+                }
+                setDados(response.data);
+            /* } */
+            
         } catch (error) {
             console.log(error);
         }
-    }, []);
+    }, [search,auth]);
 
     useEffect(()=>{
+       /*  getAuth(); */
         loadingData();
-    }, []);
+    }, [/* getAuth , */loadingData]);
 
     return (
         <View>
@@ -45,6 +67,8 @@ const Professionals = () => {
                 <View />
             </Header>
             <SearchBar
+                value={search}
+                onChangeText={setSearch}
                 placeholder='Busque um Profissional'
                 lightTheme
             />

@@ -71,7 +71,7 @@ const Login = () => {
     } */
 
     useEffect(()=>{
-        if(authentication?.token){
+         if(authentication?.token){ 
             navigation.navigate('Home');
         }
     }, [authentication]);
