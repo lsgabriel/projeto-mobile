@@ -15,6 +15,7 @@ const Home = () => {
     const navigation = useNavigation();
     const [loading, setLoading] = useState(true);
     const [dados, setDados] = useState();
+    const [search, setSearch] = useState('');
 
     /* const auth = useAuth(); */
 
@@ -114,13 +115,16 @@ const Home = () => {
                 <SearchBar
                     placeholder="Buscar um profissional"
                     style={styles.search}
+                    value={search}
+                    onChangeText={setSearch}
                     containerStyle={styles.searchBar}
                     inputContainerStyle={styles.searchBarInputContainer}
                     inputStyle={styles.searchBarInput}
                     round={true}
                     placeholderTextColor='#FFF'
                     searchIcon={
-                        <Icon 
+                        <Icon
+                            onPress={()=> navigation.navigate('Professionals', {search: search})}
                             name='search'
                             size={24}
                             color='#FFF'
@@ -131,6 +135,7 @@ const Home = () => {
                             name='close'
                             size={24}
                             color='#FFF'
+                            onPress={()=>setSearch('')}
                         />
                     }
                     lightTheme={false}

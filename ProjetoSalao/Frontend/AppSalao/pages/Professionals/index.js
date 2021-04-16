@@ -9,10 +9,10 @@ import ProfessionalListItem from '../../components/ProfessionalListItem';
 import { useNavigation } from '@react-navigation/native';
 import useAuth from '../../hooks/useAuth';
 
-const Professionals = () => {
+const Professionals = ({route}) => {
     const navigation = useNavigation();
     const [dados, setDados] = useState();
-    const [search, setSearch] = useState('');
+    const [search, setSearch] = useState(route?.params?.search == undefined ? '' : route.params.search);
     const auth = useAuth(); 
     /* const [auth, setAuth] = useState();
 
@@ -46,6 +46,7 @@ const Professionals = () => {
 
     useEffect(()=>{
        /*  getAuth(); */
+       console.log(route?.params?.search )
         loadingData();
     }, [/* getAuth , */loadingData]);
 

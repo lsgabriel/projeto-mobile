@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
         borderRadius: 300,
     },
     searchBarInput:{
-        
+        color: '#fff',
         // borderRadius: 300,
     },
     searchBarInputContainer:{
