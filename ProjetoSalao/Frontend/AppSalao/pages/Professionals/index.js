@@ -22,7 +22,7 @@ const Professionals = ({route}) => {
     },[]) */
 
     const loadingData = useCallback(async ()=>{
-
+        console.log('teste')
         try {
           /*   if(auth.token){ */
                 let response;
@@ -46,9 +46,8 @@ const Professionals = ({route}) => {
 
     useEffect(()=>{
        /*  getAuth(); */
-       console.log(route?.params?.search )
         loadingData();
-    }, [/* getAuth , */loadingData]);
+    }, [/* getAuth , */ search]);
 
     return (
         <View>
