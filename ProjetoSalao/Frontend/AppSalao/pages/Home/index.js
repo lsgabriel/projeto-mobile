@@ -150,7 +150,7 @@ const Home = () => {
                     
                 </View>
 
-                <ScrollView style={styles.servicesContainer} horizontal={true}>
+                <ScrollView style={styles.servicesContainer} horizontal={false}>
                     
                     <TouchableOpacity style={styles.servicesItem}
                         onPress={()=>navigation.navigate('Professionals')}

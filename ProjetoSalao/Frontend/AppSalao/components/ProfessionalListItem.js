@@ -1,15 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const ProfessionalListItem = ({item})=>{
+const ProfessionalListItem = ({item, isFav})=>{
+
+    const [isFavorite, setIsFavorite] = useState(isFav);
+    const id = item.id;
+
+    const checkFavorite = ()=>{
+        let fav = isFavorite.includes(id);
+        
+        if(fav){
+            setIsFavorite(isFav.filter((value)=>(id != value)))
+            console.log(isFavorite);
+        }
+         else {
+            setIsFavorite([...isFavorite, id]);
+            console.log(isFavorite);
+        }
+    }
+
     const navigation = useNavigation();
     return(
         <View style={styles.main}>
-            <Icon
-                type='material-community' name={item.Pfav ? 'star' : 'star-outline'} color={item.Pfav ? '#FFF' : '#a32bab'} containerStyle={styles.star} size={28}
-            />
+            <TouchableOpacity
+                onPress={checkFavorite}
+                style={styles.star}
+            >
+                <Icon
+                    type='material-community' name={isFavorite.includes(id) ? 'star' : 'star-outline'} color={isFavorite.includes(id) ? '#FFF' : '#a32bab'} size={28}
+                />
+
+
+
+
+            </TouchableOpacity>
             <Image
                 style={styles.img}
                 source={{uri:item.profile_image}}

@@ -11,33 +11,42 @@ import useAuth from '../../hooks/useAuth';
 
 const Professionals = ({route}) => {
     const navigation = useNavigation();
-    const [dados, setDados] = useState();
+    const [dados, setDados] = useState([]);
     const [search, setSearch] = useState(route?.params?.search == undefined ? '' : route.params.search);
-    const auth = useAuth(); 
-    /* const [auth, setAuth] = useState();
+    // const auth = useAuth();
+    const [auth, setAuth] = useState();
+    const [favorites, setFavorites] = useState([2, 4]);
+
+    // const favorites = [2, 4];
+
+    const getFav = ()=>{
+        
+        
+    }
 
     const getAuth = useCallback(async ()=>{
         const respAuth = JSON.parse(await AsyncStorage.getItem('auth'));
         setAuth(respAuth);
-    },[]) */
+    },[])
 
     const loadingData = useCallback(async ()=>{
-        console.log('teste')
+        console.log(search);
+        console.log('teste');
         try {
-          /*   if(auth.token){ */
+            if(auth?.token){
                 let response;
                 if (search === '') {
                     response = await api.get(`/professionals`, {
-                        headers: { 'x-access-token': auth.token }
+                        headers: { 'x-access-token': auth?.token }
                     });
                 }
                 else {
                     response = await api.get(`/professionals/search/${search}`, {
-                        headers: { 'x-access-token': auth.token }
+                        headers: { 'x-access-token': auth?.token }
                     });
                 }
                 setDados(response.data);
-            /* } */
+            }
             
         } catch (error) {
             console.log(error);
@@ -45,9 +54,15 @@ const Professionals = ({route}) => {
     }, [search,auth]);
 
     useEffect(()=>{
-       /*  getAuth(); */
+        if(!dados.length){
+            loadingData();
+        }
+    }, [loadingData]);
+
+    useEffect(()=>{
+        getAuth();
         loadingData();
-    }, [/* getAuth , */ search]);
+    }, [getAuth , search]);
 
     return (
         <View>
@@ -73,7 +88,7 @@ const Professionals = ({route}) => {
             />
             <FlatList
                 data={dados}
-                renderItem={({item})=> <ProfessionalListItem item={item} />}
+                renderItem={({item})=> <ProfessionalListItem item={item} isFav={favorites} />}
                 keyExtractor={(item)=> String(item.id)}
             />
         </View>
