@@ -96,8 +96,8 @@ const Home = () => {
                         style = {styles.header}
                     /> */}
                 <TouchableWithoutFeedback
-                    // onPress={navigator.navigate('PerfilUser')}
-                    onPress={()=>console.log('teste')}
+                    onPress={navigation.navigate('PerfilUser')}
+                    // onPress={()=>console.log('teste')}
                 >
                     <Image
                         source={{ uri: dados === undefined ? null : dados.profile_image }}

@@ -9,20 +9,22 @@ import ProfessionalListItem from '../../components/ProfessionalListItem';
 import { useNavigation } from '@react-navigation/native';
 import useAuth from '../../hooks/useAuth';
 
+
+
 const Professionals = ({route}) => {
     const navigation = useNavigation();
     const [dados, setDados] = useState([]);
     const [search, setSearch] = useState(route?.params?.search == undefined ? '' : route.params.search);
     // const auth = useAuth();
     const [auth, setAuth] = useState();
-    const [favorites, setFavorites] = useState([2, 4]);
+    const [favorites, setFavorites] = useState([]);
+
+    const getFav = async()=>{
+        const fav = JSON.parse(await AsyncStorage.getItem('hairstyle@favorites'));
+        setFavorites(fav)
+    }
 
     // const favorites = [2, 4];
-
-    const getFav = ()=>{
-        
-        
-    }
 
     const getAuth = useCallback(async ()=>{
         const respAuth = JSON.parse(await AsyncStorage.getItem('auth'));
@@ -32,6 +34,7 @@ const Professionals = ({route}) => {
     const loadingData = useCallback(async ()=>{
         console.log(search);
         console.log('teste');
+
         try {
             if(auth?.token){
                 let response;
@@ -61,6 +64,7 @@ const Professionals = ({route}) => {
 
     useEffect(()=>{
         getAuth();
+        getFav();
         loadingData();
     }, [getAuth , search]);
 

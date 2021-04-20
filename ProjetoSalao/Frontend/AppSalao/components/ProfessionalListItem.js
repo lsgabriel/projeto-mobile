@@ -6,6 +6,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const ProfessionalListItem = ({item, isFav})=>{
 
+    const storeData = async(data)=>{
+        await AsyncStorage.setItem('hairstyle@favorites', JSON.stringify(data))
+    }
+
     const [isFavorite, setIsFavorite] = useState(isFav);
     const id = item.id;
 
@@ -14,11 +18,11 @@ const ProfessionalListItem = ({item, isFav})=>{
         
         if(fav){
             setIsFavorite(isFav.filter((value)=>(id != value)))
-            console.log(isFavorite);
+            storeData(isFavorite);
         }
          else {
             setIsFavorite([...isFavorite, id]);
-            console.log(isFavorite);
+            storeData(isFavorite);
         }
     }
 
