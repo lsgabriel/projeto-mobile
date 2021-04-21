@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
     container:{
         height:950,
+        flex: 1,
     },
     img: {
         width: 200,height: 200,
@@ -10,7 +11,6 @@ const styles = StyleSheet.create({
         borderColor:'purple',borderWidth:2,
     },
     perfil:{
-        marginLeft:150,marginTop:10,
         fontSize:25,
         color:'white',
     },
@@ -31,9 +31,11 @@ const styles = StyleSheet.create({
         color:'purple',
     },
     horarios:{
-        width:360,height:70,
+        height:70,
         backgroundColor:'#D994DD',
-        borderRadius:8, borderWidth:1
+        borderRadius:8,
+        borderWidth:1,
+        flex: 1,
     },
     data:{
         marginLeft:15,marginTop:10,        
@@ -69,14 +71,16 @@ const styles = StyleSheet.create({
         fontWeight:'bold',
     },
     agendamentos:{
-        marginLeft:90,marginTop:15,
+        marginLeft:90,
+        marginTop:15,
         fontSize:20,
         color: 'white',
         fontWeight: 'bold',
     },
     bgAgendamentos:{
-        width:360,height:58,
-        borderWidth:2,borderColor:'purple',
+        height:58,
+        borderWidth:2,
+        borderColor:'purple',
     },
     linearBG:{
         width:400,height:400,

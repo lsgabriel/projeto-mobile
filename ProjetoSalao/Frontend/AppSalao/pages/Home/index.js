@@ -95,15 +95,15 @@ const Home = () => {
                 {/* <Header 
                         style = {styles.header}
                     /> */}
-                <TouchableWithoutFeedback
-                    onPress={navigation.navigate('PerfilUser')}
+                <TouchableOpacity
+                    onPress={()=>navigation.navigate('PerfilUser')}
                     // onPress={()=>console.log('teste')}
                 >
                     <Image
                         source={{ uri: dados === undefined ? null : dados.profile_image }}
                         style={styles.img}
                     />
-                </TouchableWithoutFeedback>
+                </TouchableOpacity>
                 <View style={styles.mainTextContainer}>
                     <Text
                         style={styles.subMainText}

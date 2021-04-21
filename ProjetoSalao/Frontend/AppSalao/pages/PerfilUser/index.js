@@ -1,9 +1,41 @@
-import React from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { View, Text, Image, ScrollView, KeyboardAvoidingView } from 'react-native';
+import { Header, Icon } from 'react-native-elements';
 import { LinearGradient } from 'expo-linear-gradient';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import api from '../../services/api';
 import styles from './styles';
+import { useNavigation } from '@react-navigation/core';
 
 const PerfilUser = () => {
+
+    const [loading, setLoading] = useState(true);
+    const [dados, setDados] = useState();
+
+    const navigation = useNavigation;
+
+    const loadingData = useCallback(async ()=>{
+        console.log('teste')
+            try {
+                const respAuth = JSON.parse(await AsyncStorage.getItem('auth'))
+
+                const response = await api.get(`/clients/${respAuth.id}` ,{
+                    headers: { 'x-access-token': respAuth?.token }
+                });
+
+                setDados(response.data);
+                setLoading(false);
+
+            } catch (error) {
+                console.log(error);
+            }
+    }, []);
+    
+    useEffect(()=>{
+        loadingData();
+    }, [loadingData]);
+
     return (
             <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined} enabled>
                 <ScrollView
@@ -16,18 +48,29 @@ const PerfilUser = () => {
                         start={{ x: 0, y: 0 }}
                         end={{ x: 0, y: 0 }}
                     >
-                        <View style={styles.bgPerfil}>
-                            <Text style={styles.perfil}>Perfil</Text>
-                        </View>
+                        <Header
+                            backgroundColor="#D994DD"
+                            leftComponent={
+                                <Icon
+                                    type='font-awesome' name='angle-left' color='#FFF' size={30}
+                                    onPress={() => { navigation.goBack() }}
+                                />
+                            }
+                            centerComponent={
+                                <Text style={styles.perfil}>Perfil</Text>
+                            }
+                        />
+
 
                         <View style={styles.form}>
                             <Image
+                                source={{ uri: dados === undefined ? null : dados.profile_image }}
                                 style={styles.img}
                             />
                         </View>
 
-                        <Text style={styles.text}>Maria de Paula</Text>
-                        <Text style={styles.text2}>(16)99156-8432</Text>
+                        <Text style={styles.text}>{dados === undefined ? 'Undefined' : dados.name}</Text>
+                        <Text style={styles.text2}>{dados === undefined ? 'Undefined' : dados.phone}</Text>
 
 
                         <LinearGradient
