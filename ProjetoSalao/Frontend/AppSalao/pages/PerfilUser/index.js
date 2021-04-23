@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { View, Text, Image, ScrollView, KeyboardAvoidingView } from 'react-native';
+import { View, Text, Image, ScrollView, KeyboardAvoidingView, FlatList } from 'react-native';
 import { Header, Icon } from 'react-native-elements';
 import { LinearGradient } from 'expo-linear-gradient';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -10,10 +10,61 @@ import { useNavigation } from '@react-navigation/core';
 
 const PerfilUser = () => {
 
+    const data = [
+        {   
+            id: 1,
+            date: '10/10/2021',
+            hour: '16:00',
+            type: 'Manicure',
+        },
+        {
+            id: 2,
+            date: '15/10/2021',
+            hour: '13:00',
+            type: 'Pedicure',
+        },
+        {
+            id: 3,
+            date: '10/05/2021',
+            hour: '10:00',
+            type: 'Massagem',
+        },
+        {
+            id: 4,
+            date: '05/11/2021',
+            hour: '09:00',
+            type: 'Cabelos',
+        },
+        {
+            id: 5,
+            date: '10/10/2021',
+            hour: '16:00',
+            type: 'Manicure',
+        },
+        {
+            id: 6,
+            date: '10/05/2021',
+            hour: '10:00',
+            type: 'Massagem',
+        },
+        {
+            id: 7,
+            date: '05/11/2021',
+            hour: '09:00',
+            type: 'Cabelos',
+        },
+        {
+            id: 8,
+            date: '10/10/2021',
+            hour: '16:00',
+            type: 'Manicure',
+        },
+    ]
+
     const [loading, setLoading] = useState(true);
     const [dados, setDados] = useState();
 
-    const navigation = useNavigation;
+    const navigation = useNavigation();
 
     const loadingData = useCallback(async ()=>{
         console.log('teste')
@@ -37,109 +88,55 @@ const PerfilUser = () => {
     }, [loadingData]);
 
     return (
-            <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined} enabled>
-                <ScrollView
-                    contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps='handled'
-                >
-                    <LinearGradient
-                        // Background Linear Gradient
-                        colors={['white', 'blueviolet']}
-                        style={styles.container}
-                        start={{ x: 0, y: 0 }}
-                        end={{ x: 0, y: 0 }}
-                    >
-                        <Header
-                            backgroundColor="#D994DD"
-                            leftComponent={
-                                <Icon
-                                    type='font-awesome' name='angle-left' color='#FFF' size={30}
-                                    onPress={() => { navigation.goBack() }}
-                                />
-                            }
-                            centerComponent={
-                                <Text style={styles.perfil}>Perfil</Text>
-                            }
+            <View style={styles.container}>
+                <Header
+                    backgroundColor="#D994DD"
+                    leftComponent={
+                        <Icon
+                            type='font-awesome'
+                            name='angle-left'
+                            color='#FFF'
+                            size={30}
+                            onPress={()=> navigation.goBack()}
                         />
+                    }
+                    centerComponent={
+                        <Text style={styles.perfil}>Perfil</Text>
+                    }
+                />
 
+                <Image
+                    source={{ uri: dados === undefined ? null : dados.profile_image }}
+                    style={styles.img}
+                />
 
-                        <View style={styles.form}>
-                            <Image
-                                source={{ uri: dados === undefined ? null : dados.profile_image }}
-                                style={styles.img}
-                            />
-                        </View>
+                <Text style={styles.text}>{dados === undefined ? 'Undefined' : dados.name}</Text>
+                <Text style={styles.text2}>{dados === undefined ? 'Undefined' : dados.phone}</Text>
 
-                        <Text style={styles.text}>{dados === undefined ? 'Undefined' : dados.name}</Text>
-                        <Text style={styles.text2}>{dados === undefined ? 'Undefined' : dados.phone}</Text>
-
-
-                        <LinearGradient
-                            colors={['#D994DD', '#CA33D2']}
-                            style={styles.bgAgendamentos}
-                            start={{ x: 0, y: 0 }}
-                            end={{ x: 1.5, y: 0 }}
-                        >
-                            <Text style={styles.agendamentos}>Seus Agendamentos</Text>
-                        </LinearGradient>
-                        <View style={styles.horarios}>
-                            <View style={styles.tratamentoP}>
-                                <Text style={styles.data}>10/03</Text>
-                                <Text style={styles.horario}>8:30</Text>
-                                <Text style={styles.tratamento}>Manicure</Text>
+                <LinearGradient
+                    colors={['#D994DD', '#CA33D2']}
+                    style={styles.bgAgendamentos}
+                    start={{ x: 0, y: 0 }}
+                    end={{ x: 1.5, y: 0 }}
+                >
+                    <Text style={styles.agendamentos}>Seus Agendamentos</Text>
+                </LinearGradient>
+                <FlatList
+                    data={data}
+                    keyExtractor={ (item)=>String(item.id) }
+                    renderItem={({item})=>(
+                        <View style={styles.listItem}>
+                            <View style={styles.dateItem}>
+                                <Text style={styles.data}>{item.date}</Text>
+                                <Text style={styles.horario}>{item.hour}</Text>
                             </View>
+                            <Text style={styles.tratamento}>{item.type}</Text>
                         </View>
-                        <View style={styles.horarios}>
-                            <View style={styles.tratamentoP}>
-                                <Text style={styles.data}>10/03</Text>
-                                <Text style={styles.horario}>9:30</Text>
-                                <Text style={styles.tratamento}>Massagem</Text>
-                            </View>
-                        </View>
-                        <View style={styles.horarios}>
-                            <View style={styles.tratamentoP}>
-                                <Text style={styles.data}>10/03</Text>
-                                <Text style={styles.horario2}>10:30</Text>
-                                <Text style={styles.tratamento2}>Manicure</Text>
-                            </View>
-                        </View>
-                        <View style={styles.horarios}>
-                            <View style={styles.tratamentoP}>
-                                <Text style={styles.data}>10/03</Text>
-                                <Text style={styles.horario2}>11:30</Text>
-                                <Text style={styles.tratamento2}>Cabelo</Text>
-                            </View>
-                        </View>
-                        <View style={styles.horarios}>
-                            <View style={styles.tratamentoP}>
-                                <Text style={styles.data}>10/03</Text>
-                                <Text style={styles.horario2}>12:30</Text>
-                                <Text style={styles.tratamento2}>Manicure</Text>
-                            </View>
-                        </View>
-                        <View style={styles.horarios}>
-                            <View style={styles.tratamentoP}>
-                                <Text style={styles.data}>10/03</Text>
-                                <Text style={styles.horario2}>15:30</Text>
-                                <Text style={styles.tratamento2}>Manicure</Text>
-                            </View>
-                        </View>
-                        <View style={styles.horarios}>
-                            <View style={styles.tratamentoP}>
-                                <Text style={styles.data}>10/03</Text>
-                                <Text style={styles.horario2}>16:30</Text>
-                                <Text style={styles.tratamento2}>Manicure</Text>
-                            </View>
-                        </View>
-                        <View style={styles.horarios}>
-                            <View style={styles.tratamentoP}>
-                                <Text style={styles.data}>10/03</Text>
-                                <Text style={styles.horario2}>11:30</Text>
-                                <Text style={styles.tratamento2}>Manicure</Text>
-                            </View>
-                        </View>
-                    </LinearGradient>
-                </ScrollView>
-            </KeyboardAvoidingView>
+                    )}
+                    showsVerticalScrollIndicator={false}
+                    
+                />
+            </View>
     );
 }
 

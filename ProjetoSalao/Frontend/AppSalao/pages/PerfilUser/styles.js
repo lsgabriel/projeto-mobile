@@ -1,51 +1,41 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+
+const screenWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
     container:{
-        height:950,
         flex: 1,
+        alignItems: 'center',
+        justifyContent: 'space-between',
     },
     img: {
-        width: 200,height: 200,
-        marginLeft:82,borderRadius: 100,
-        borderColor:'purple',borderWidth:2,
+        width: 180,
+        height: 180,
+        borderRadius: 100,
+        borderColor: 'purple',
+        borderWidth: 4,
     },
     perfil:{
-        fontSize:25,
-        color:'white',
-    },
-    bgPerfil:{
-        width:360,height:58,
-        backgroundColor:'#D994DD',
-    },
-    form:{
-        color:'white',marginTop:20,
+        fontSize: 25,
+        color: 'white',
     },
     text:{
-        marginLeft:96,
-        fontSize:25,
+        fontWeight: 'bold',
+        fontSize: 35,
         color: 'purple',
+        marginTop: 10,
     },
     text2:{
-        marginLeft:130,marginBottom:10,
-        color:'purple',
+        marginBottom: 20,
+        color: 'purple',
     },
-    horarios:{
-        height:70,
-        backgroundColor:'#D994DD',
-        borderRadius:8,
-        borderWidth:1,
-        flex: 1,
-    },
-    data:{
-        marginLeft:15,marginTop:10,        
-        fontSize:15,
-        color:'white',
+    data:{     
+        fontSize: 15,
+        color: '#FFF',
     },
     horario:{
-        marginLeft:15,
         fontSize:20,
-        color:'white',
+        color: '#FFF',
         fontWeight: 'bold',
     },
     horario2:{
@@ -54,38 +44,41 @@ const styles = StyleSheet.create({
         color:'white',
         fontWeight: 'bold',
     },
-    tratamentoP:{
-        flex: 1,
-        flexWrap: 'wrap',
-    },
     tratamento:{
-        marginLeft:117,marginTop:20,
         fontSize:20,
-        color:'white',
-        fontWeight:'bold',
-    },
-    tratamento2:{
-        marginLeft:110,marginTop:20,
-        fontSize:20,
-        color:'white',
+        color: '#FFF',
         fontWeight:'bold',
     },
     agendamentos:{
-        marginLeft:90,
-        marginTop:15,
-        fontSize:20,
+        fontSize: 20,
         color: 'white',
         fontWeight: 'bold',
     },
     bgAgendamentos:{
-        height:58,
-        borderWidth:2,
-        borderColor:'purple',
+        height: 58,
+        width: '100%',
+        borderWidth: 2,
+        borderColor: 'purple',
+        justifyContent: 'center',
+        alignItems: 'center',
+        elevation: 5,
     },
-    linearBG:{
-        width:400,height:400,
-        marginTop:10,
+    listItem:{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        // backgroundColor: 'pink',
+        width: screenWidth,
+        paddingHorizontal: 30,
+        backgroundColor: '#D994DD',
+        paddingVertical: 10,
+        color: '#FFF',
+        borderColor: 'purple',
+        borderWidth: 1,
     },
+    dateItem:{
+        flexDirection: 'column'
+    }
 });
 
 export default styles;

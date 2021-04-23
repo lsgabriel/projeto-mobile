@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { View, Text, Image, TouchableOpacity, TouchableWithoutFeedback, TouchableHighlight, ScrollView } from 'react-native';
+import { View, Text, Image, TouchableOpacity, TouchableWithoutFeedback, TouchableHighlight, ScrollView, SafeAreaView, FlatList } from 'react-native';
 import { Header, SearchBar, Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import data from '../Professionals/data';
@@ -16,6 +16,29 @@ const Home = () => {
     const [loading, setLoading] = useState(true);
     const [dados, setDados] = useState();
     const [search, setSearch] = useState('');
+
+    const data = [
+        {
+            id: 1,
+            icon: 'email',
+            service: 'Manicure',
+        },
+        {
+            id: 2,
+            icon: 'email',
+            service: 'Massagem',
+        },
+        {
+            id: 3,
+            icon: 'email',
+            service: 'Maquiagem',
+        },
+        {
+            id: 4,
+            icon: 'email',
+            service: 'Cabelereira',
+        },
+    ]
 
     /* const auth = useAuth(); */
 
@@ -76,25 +99,26 @@ const Home = () => {
     }, [loadingData]);
 
     return (
-        <ScrollView contentContainerStyle={{flexGrow: 1}}>
+        <SafeAreaView style={{flex: 1}}>
         <LinearGradient
             // Background Linear Gradient
             colors={['#FFDEFF', '#C833CA']}
-            // style={styles.mainContainer}
+            style={{flexGrow: 1}}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 1 }}
         >
             <View style={styles.main}>
 
+                {/* <Header 
+                    style={styles.header}
+                    backgroundColor='transparent'
+                /> */}
                 <Button
                     title="Logoff"
                     buttonStyle={styles.logoffButton}
                     onPress={logoff}
                 />
 
-                {/* <Header 
-                        style = {styles.header}
-                    /> */}
                 <TouchableOpacity
                     onPress={()=>navigation.navigate('PerfilUser')}
                     // onPress={()=>console.log('teste')}
@@ -149,8 +173,35 @@ const Home = () => {
                         </Text>
                     
                 </View>
-
-                <ScrollView style={styles.servicesContainer} horizontal={false}>
+                
+                <FlatList
+                    data={data}
+                    keyExtractor={ (item)=>String(item.id) }
+                    renderItem={({item})=>(
+                        <TouchableOpacity style={styles.servicesItem}
+                            onPress={()=>navigation.navigate('Professionals')}
+                        >
+                            <Icon
+                                name={item.icon}
+                                size={52}
+                                style={styles.servicesIcon}
+                                color='#832189'
+                                onPress={()=>navigation.navigate('Professionals')}
+                            />
+                            <Text style={styles.servicesLabel}>
+                                {item.service}
+                            </Text>
+                        </TouchableOpacity>
+                    )}
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                    // contentContainerStyle={styles.servicesContainer}
+                />
+                {/* <ScrollView 
+                    style={styles.servicesContainer} 
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                >
                     
                     <TouchableOpacity style={styles.servicesItem}
                         onPress={()=>navigation.navigate('Professionals')}
@@ -206,11 +257,11 @@ const Home = () => {
                         </Text>
                     </TouchableOpacity>
 
-                </ScrollView>
+                </ScrollView> */}
                 
             </View>
         </LinearGradient>
-        </ScrollView>
+        </SafeAreaView>
     );
 }
 

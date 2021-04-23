@@ -14,7 +14,7 @@ const ProfessionalListItem = ({item, isFav})=>{
     const id = item.id;
 
     const checkFavorite = ()=>{
-        let fav = isFavorite.includes(id);
+        let fav = isFavorite?.includes(id);
         
         if(fav){
             setIsFavorite(isFav.filter((value)=>(id != value)))
@@ -34,7 +34,7 @@ const ProfessionalListItem = ({item, isFav})=>{
                 style={styles.star}
             >
                 <Icon
-                    type='material-community' name={isFavorite.includes(id) ? 'star' : 'star-outline'} color={isFavorite.includes(id) ? '#FFF' : '#a32bab'} size={28}
+                    type='material-community' name={isFavorite?.includes(id) ? 'star' : 'star-outline'} color={isFavorite?.includes(id) ? '#FFF' : '#a32bab'} size={28}
                 />
 
 

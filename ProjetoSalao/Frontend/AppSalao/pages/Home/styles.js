@@ -4,9 +4,17 @@ const windowWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
     logoffButton:{
-        marginTop:40,backgroundColor:'#F128F5',
-        width:100,borderBottomEndRadius:10,
-        borderBottomStartRadius:10,padding:7,
+        marginTop: 0,
+        backgroundColor: '#F128F5',
+        width: 100,
+        borderBottomEndRadius: 10,
+        borderBottomStartRadius: 10,
+        padding: 7,
+    },
+    header:{
+        height: 0,
+        borderBottomWidth: 0,
+        borderBottomColor: 'transparent'
     },
     container:{
         height:'100%',
@@ -70,23 +78,18 @@ const styles = StyleSheet.create({
         marginHorizontal: 20,
     },
     servicesContainer:{
-        flexWrap: 'wrap',marginBottom:7,
-        
+        marginBottom:0,
     },
     servicesItem:{
-        flexDirection:'row',
-        marginTop: 2,
+        marginTop: 15,
         backgroundColor: '#FFF',
-        height: 75,
-        width: windowWidth*0.90,
+        width: windowWidth*0.40,
         alignItems: 'center',
-        justifyContent: 'space-between',
-    },
-    servicesIcons:{
-        flex:4,
+        marginHorizontal: 10,
+        paddingVertical: 35,
+        borderRadius: 25,
     },
     servicesLabel:{
-        flex:6,
         fontSize: 23,
         color: '#832189',
         fontWeight: 'bold',
