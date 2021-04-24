@@ -1,69 +1,119 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+
+const screenWidth = Dimensions.get('window').width;
+const screenHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
     container:{
-        flex: 1,
+        backgroundColor: '#FFF',
+        alignItems: 'center',
     },
-    img: {
-        width: 310,
-        height: 195,
-        alignSelf: 'center',
-        marginBottom: 60,
+//------------------------------------------
+    logoContainer:{
+        flex: 2,
+        alignItems: 'center',
     },
     form:{
+        flex: 3,
         color:'white',
-        marginTop:82,
-        zIndex: 1,
+        width: screenWidth,
+        marginTop: 40,
+        alignItems: 'center',
     },
-    resetPassword:{
-        color:'#fff',
-        alignSelf: 'flex-end',
-        justifyContent: 'flex-start',
-        marginRight: 20,
+    svg:{
+        position: 'relative',
+        width: 820,
+        height: 1012,
+        zIndex: -1,
+        top: '-37%',
     },
-    buttonLogin:{
-        backgroundColor:'#F128F5',
-        marginTop:30,
-        padding:15,
-        width:200,
-        borderRadius:40,
-        alignSelf: 'center'
+    header:{
+        height: screenHeight,
+        width: screenWidth,
+        alignItems: 'center'
     },
-    buttonSignup:{
-        backgroundColor:'#832189',
-        marginTop:15,
-        padding:15,
-        width:180,
-        borderRadius:40,
-        alignSelf: 'center'
+//------------------------------------------
+    logo:{
+        marginTop: 10,
+    },
+    title:{
+        fontSize: 26,
+        fontWeight: 'bold',
+        color: '#C833CA',
     },
     inputStyles:{
         backgroundColor: 'white',
-        paddingHorizontal: 10,
-        paddingVertical: 8,
+        paddingHorizontal: 20,
+        paddingVertical: 10,
         borderRadius: 40,
         fontSize: 22,
     },
-    circle:{
-        position: 'absolute',
-        width:400,
-        height:400,
-        borderRadius:900,
-        marginLeft:25,
-        marginTop: 200,
-        zIndex: -1
+    inputStyles2:{
+        backgroundColor: 'white',
+        paddingHorizontal: 20,
+        paddingVertical: 7,
+        borderRadius: 40,
+        fontSize: 22,
     },
-    topCircle:{
-        position: 'absolute',
-        width: 500,
-        height: 500,
-        alignSelf: 'center',
-        borderRadius:900,
-        backgroundColor: '#FFF',
-        top: -260,
-        zIndex: -1
-    },
+    resetPassword:{
+        color: '#B8B8B8',
+        alignSelf: 'flex-end',
+        marginTop: -15,
+        marginRight: 20,
 
+    },
+    buttonLogin:{
+        backgroundColor:'#FFF',
+        marginTop: 30,
+        height: 50,
+        borderRadius: 40,
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    buttonIcon:{
+        backgroundColor: '#C833CA',
+        borderRadius: 50,
+        height: '100%',
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+    },
+    buttonText:{
+        paddingHorizontal: 30,
+        paddingLeft: 50,
+        color: '#C833CA',
+        fontWeight: 'bold',
+        fontSize: 24,
+    },
+    buttonSignup:{
+        color: '#fff',
+        backgroundColor: '#C833CA',
+        marginTop: 20,
+        paddingHorizontal: 90,
+        borderRadius: 40,
+        alignSelf: 'center',
+    },
+    buttonText2:{
+        paddingVertical: 10,
+        color: '#FFF',
+        fontWeight: 'bold',
+        fontSize: 18,
+    },
+    footer:{
+        position: 'absolute',
+        bottom: '5%',
+        alignItems: 'center',
+    },
+    top:{
+        width: 50,
+        borderWidth: 1,
+        borderColor: '#FFF',
+        marginBottom: 15,
+    },
+    bottom:{
+        width: 80,
+        borderWidth: 1,
+        borderColor: '#FFF',
+    }
 });
 
 export default styles;

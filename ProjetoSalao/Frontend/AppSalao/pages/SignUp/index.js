@@ -45,177 +45,151 @@ const SignUp = () =>{
 
     return(
       <KeyboardAvoidingView style={{ flex: 1 }} enabled>
-        <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps='handled'>
+        <ScrollView 
+          contentContainerStyle={{ flexGrow: 1 }} 
+          keyboardShouldPersistTaps='handled'
+          
+        >
           <Formik
             initialValues={initialValues}
             onSubmit={values => postUser(values)}
             validationSchema={CreateUserSchema}
           >
-
-            {({ handleChange, handleSubmit, handleBlur, values, errors, touched, isValid }) => (
-
-              <View style={styles.background}>
-                <LinearGradient
-                  // Background Linear Gradient
-                  colors={['#FFDEFF', '#C833CA']}
-                  style={styles.background}
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 1, y: 1 }}
-                >
-
-
-                  <View style={styles.form}>
-                    <Image
-                      source={require('../../assets/logoApp.png')}
-                      style={styles.img}
-                    />
-
-                    <Input
-                      placeholder="Nome"
-                      inputContainerStyle={styles.inputStyles}
-                      leftIcon={
-                        <Icon
-                          name='person'
-                          size={24}
-                          color='#AAA'
-                        />
-                      }
-                      value={values.name}
-                      onChangeText={handleChange('name')}
-                      onBlur={handleBlur('name')}
-                    />
-
-                    <Input
-                      placeholder="Email"
-                      inputContainerStyle={styles.inputStyles}
-                      leftIcon={
-                        <Icon
-                          name='email'
-                          size={24}
-                          color='#AAA'
-                        />
-                      }
-                      value={values.email}
-                      onChangeText={handleChange('email')}
-                      onBlur={handleBlur('email')}
-                      errorMessage={errors.email && touched.email ? errors.email : null}
-
-                      errorStyle={{ color: '#fff' }}
-                    />
-
-                    
-                    <Input
-                      placeholder="Telefone"
-                      inputContainerStyle={styles.inputStyles}
-                      leftIcon={
-                        <Icon
-                          name='phone'
-                          size={24}
-                          color='#AAA'
-                        />
-                      }
-                      value={values.phone}
-                      onChangeText={handleChange('phone')}
-                      onBlur={handleBlur('phone')}
-                    />
-
-                    <Input
-                      placeholder="Data de nascimento"
-                      inputContainerStyle={styles.inputStyles}
-                      leftIcon={
-                        <Icon
-                          name='event'
-                          size={24}
-                          color='#AAA'
-                        />
-                      }
-                      value={values.birthDate}
-                      onChangeText={handleChange('birthDate')}
-                      onBlur={handleBlur('birthDate')}
-                    />
-
-                    <Input
-                      placeholder="Senha"
-                      leftIcon={
-                        <Icon
-                          name='lock'
-                          size={24}
-                          color='#AAA'
-                        />
-                      }
-                      rightIcon={
-                        <Icon
-                          name={eye ? 'visibility' : 'visibility-off'}
-                          size={24}
-                          color='#AAA'
-                          onPress={() => setEye(!eye)}
-                        />
-                      }
-                      secureTextEntry={eye}
-                      inputContainerStyle={styles.inputStyles}
-
-                      value={values.password}
-                      onChangeText={handleChange('password')}
-                      onBlur={handleBlur('password')}
-                      errorMessage={errors.password && touched.password ? errors.password : null}
-
-                      errorStyle={{ color: '#fff' }}
-                    />
-
-                    <Input
-                      placeholder="Confirme a Senha"
-                      leftIcon={
-                        <Icon
-                          name='lock'
-                          size={24}
-                          color='#AAA'
-                        />
-                      }
-                      rightIcon={
-                        <Icon
-                          name={eye2 ? 'visibility' : 'visibility-off'}
-                          size={24}
-                          color='#AAA'
-                          onPress={() => setEye2(!eye2)}
-                        />
-                      }
-                      secureTextEntry={eye2}
-                      inputContainerStyle={styles.inputStyles}
-
-                      value={values.passwordConfirmation}
-                      onChangeText={handleChange('passwordConfirmation')}
-                      onBlur={handleBlur('passwordConfirmation')}
-                      errorMessage={
-                        errors.passwordConfirmation && 
-                        touched.passwordConfirmation ? errors.passwordConfirmation : null
-                      }
-                      errorStyle={{ color: '#fff' }}
-                    />
-
-                    <Button
-                      disabled={!isValid}
-                      buttonStyle={styles.button}
-                      title="Cadastre-se"
-                      onPress={handleSubmit}
-                    />
-
-                    <View style={styles.topCircle}>
-                    </View>
-
-                    <View style={styles.circle}>
-                      <LinearGradient
-                        // Background Linear Gradient
-                        colors={['#EFA8F1', '#C433C7']}
-                        style={styles.circle}
-                        start={{ x: 0, y: 0 }}
-                        end={{ x: 1, y: 1 }}
+          {({ handleChange, handleSubmit, handleBlur, values, errors, touched, isValid }) => (
+            <View style={styles.background}>
+              <Text style={styles.title}>Cadastro</Text>
+              
+                <View style={styles.form}>
+                  <Input
+                    placeholder="Nome"
+                    inputContainerStyle={styles.inputStyles}
+                    leftIcon={
+                      <Icon
+                        name='person'
+                        size={24}
+                        color='#AAA'
                       />
-                    </View>
-                  </View>
+                    }
+                    value={values.name}
+                    onChangeText={handleChange('name')}
+                    onBlur={handleBlur('name')}
+                  />
 
-                </LinearGradient>
-              </View>
-            )}
+                  <Input
+                    placeholder="Email"
+                    inputContainerStyle={styles.inputStyles}
+                    leftIcon={
+                      <Icon
+                        name='email'
+                        size={24}
+                        color='#AAA'
+                      />
+                    }
+                    value={values.email}
+                    onChangeText={handleChange('email')}
+                    onBlur={handleBlur('email')}
+                    errorMessage={errors.email && touched.email ? errors.email : null}
+
+                    errorStyle={{ color: '#fff' }}
+                  />
+
+                  
+                  <Input
+                    placeholder="Telefone"
+                    inputContainerStyle={styles.inputStyles}
+                    leftIcon={
+                      <Icon
+                        name='phone'
+                        size={24}
+                        color='#AAA'
+                      />
+                    }
+                    value={values.phone}
+                    onChangeText={handleChange('phone')}
+                    onBlur={handleBlur('phone')}
+                  />
+
+                  <Input
+                    placeholder="Data de nascimento"
+                    inputContainerStyle={styles.inputStyles}
+                    leftIcon={
+                      <Icon
+                        name='event'
+                        size={24}
+                        color='#AAA'
+                      />
+                    }
+                    value={values.birthDate}
+                    onChangeText={handleChange('birthDate')}
+                    onBlur={handleBlur('birthDate')}
+                  />
+
+                  <Input
+                    placeholder="Senha"
+                    leftIcon={
+                      <Icon
+                        name='lock'
+                        size={24}
+                        color='#AAA'
+                      />
+                    }
+                    rightIcon={
+                      <Icon
+                        name={eye ? 'visibility' : 'visibility-off'}
+                        size={24}
+                        color='#AAA'
+                        onPress={() => setEye(!eye)}
+                      />
+                    }
+                    secureTextEntry={eye}
+                    inputContainerStyle={styles.inputStyles}
+
+                    value={values.password}
+                    onChangeText={handleChange('password')}
+                    onBlur={handleBlur('password')}
+                    errorMessage={errors.password && touched.password ? errors.password : null}
+
+                    errorStyle={{ color: '#fff' }}
+                  />
+
+                  <Input
+                    placeholder="Confirme a Senha"
+                    leftIcon={
+                      <Icon
+                        name='lock'
+                        size={24}
+                        color='#AAA'
+                      />
+                    }
+                    rightIcon={
+                      <Icon
+                        name={eye2 ? 'visibility' : 'visibility-off'}
+                        size={24}
+                        color='#AAA'
+                        onPress={() => setEye2(!eye2)}
+                      />
+                    }
+                    secureTextEntry={eye2}
+                    inputContainerStyle={styles.inputStyles}
+
+                    value={values.passwordConfirmation}
+                    onChangeText={handleChange('passwordConfirmation')}
+                    onBlur={handleBlur('passwordConfirmation')}
+                    errorMessage={
+                      errors.passwordConfirmation && 
+                      touched.passwordConfirmation ? errors.passwordConfirmation : null
+                    }
+                    errorStyle={{ color: '#fff' }}
+                  />
+                </View>
+                <Button
+                  disabled={!isValid}
+                  buttonStyle={styles.button}
+                  title="Cadastre-se"
+                  onPress={handleSubmit}
+                />
+            </View>
+          )}
           </Formik>
         </ScrollView>
       </KeyboardAvoidingView>

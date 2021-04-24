@@ -10,6 +10,9 @@ import api from '../../services/api';
 /* import useAuth from '../../hooks/useAuth'; */
 import { useNavigation } from '@react-navigation/native';
 
+import { NailIcon, MassageIcon, LipIcon, HairIcon } from '../../assets/SvgIcons';
+import { RoundBG2 } from '../../assets/SvgComponents';
+
 const Home = () => {
 
     const navigation = useNavigation();
@@ -20,22 +23,22 @@ const Home = () => {
     const data = [
         {
             id: 1,
-            icon: 'email',
+            icon: <NailIcon/>,
             service: 'Manicure',
         },
         {
             id: 2,
-            icon: 'email',
+            icon: <MassageIcon/>,
             service: 'Massagem',
         },
         {
             id: 3,
-            icon: 'email',
+            icon: <LipIcon/>,
             service: 'Maquiagem',
         },
         {
             id: 4,
-            icon: 'email',
+            icon: <HairIcon/>,
             service: 'Cabelereira',
         },
     ]
@@ -74,7 +77,7 @@ const Home = () => {
 
     const logoff = async ()=>{
         try {
-         await AsyncStorage.removeItem('auth');
+         await AsyncStorage.setItem('auth', '');
          navigation.navigate('Login');
      } catch (error) {
             
@@ -99,30 +102,31 @@ const Home = () => {
     }, [loadingData]);
 
     return (
-        <SafeAreaView style={{flex: 1}}>
-        <LinearGradient
-            // Background Linear Gradient
-            colors={['#FFDEFF', '#C833CA']}
-            style={{flexGrow: 1}}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
+        <SafeAreaView>
+        <View
+            style={styles.container}
         >
             <View style={styles.main}>
-
-                {/* <Header 
-                    style={styles.header}
-                    backgroundColor='transparent'
-                /> */}
+{/* 
                 <Button
                     title="Logoff"
                     buttonStyle={styles.logoffButton}
                     onPress={logoff}
-                />
+                /> */}
 
                 <TouchableOpacity
                     onPress={()=>navigation.navigate('PerfilUser')}
                     // onPress={()=>console.log('teste')}
+                    style={styles.imgContainer}
+                    activeOpacity={0.7}
                 >
+                    {/* <View style={styles.overlayColor}/> */}
+                    <LinearGradient
+                        colors={['rgba(253,246,253,0.0)', 'rgba(200,51,202,0.5)']}
+                        style={styles.overlayColor}
+                        start={{ x: 0, y: 0 }}
+                        end={{ x: 1, y: 1 }}
+                    />
                     <Image
                         source={{ uri: dados === undefined ? null : dados.profile_image }}
                         style={styles.img}
@@ -132,11 +136,11 @@ const Home = () => {
                     <Text
                         style={styles.subMainText}
                     >
-                        Olá, {dados === undefined ? 'Undefined' : dados.name}
+                        Olá, {dados === undefined ? '' : dados.name}
                     </Text>
                 </View>
 
-                <SearchBar
+                {/* <SearchBar
                     placeholder="Buscar um profissional"
                     style={styles.search}
                     value={search}
@@ -163,7 +167,7 @@ const Home = () => {
                         />
                     }
                     lightTheme={false}
-                />
+                /> */}
 
                 
 
@@ -178,89 +182,32 @@ const Home = () => {
                     data={data}
                     keyExtractor={ (item)=>String(item.id) }
                     renderItem={({item})=>(
-                        <TouchableOpacity style={styles.servicesItem}
+                        <TouchableOpacity style={styles.servicesButton}
                             onPress={()=>navigation.navigate('Professionals')}
+                            activeOpacity={0.7}
                         >
-                            <Icon
-                                name={item.icon}
-                                size={52}
-                                style={styles.servicesIcon}
-                                color='#832189'
-                                onPress={()=>navigation.navigate('Professionals')}
-                            />
+                        <LinearGradient
+                            colors={['#C833CA', '#7B206F']}
+                            style={styles.servicesItem}
+                            start={{ x: 0, y: 0 }}
+                            end={{ x: 0, y: 1 }}
+                        >
+                            {item.icon}
                             <Text style={styles.servicesLabel}>
                                 {item.service}
                             </Text>
+                        </LinearGradient>
                         </TouchableOpacity>
                     )}
                     horizontal={true}
                     showsHorizontalScrollIndicator={false}
-                    // contentContainerStyle={styles.servicesContainer}
+                    contentContainerStyle={styles.servicesContainer}
                 />
-                {/* <ScrollView 
-                    style={styles.servicesContainer} 
-                    horizontal={true}
-                    showsHorizontalScrollIndicator={false}
-                >
-                    
-                    <TouchableOpacity style={styles.servicesItem}
-                        onPress={()=>navigation.navigate('Professionals')}
-                    >
-                        <Icon
-                            name='email'
-                            size={52}
-                            style={styles.servicesIcon}
-                            color='#832189'
-                            onPress={()=>navigation.navigate('Professionals')}
-                        />
-                        <Text style={styles.servicesLabel}>
-                            Manicure
-                        </Text>
-                    </TouchableOpacity>
-                                        
-                    <TouchableOpacity style={styles.servicesItem}>
-                        <Icon
-                            name='email'
-                            size={52}
-                            style={styles.servicesIcon}
-                            color='#832189'
-                            onPress={()=>navigation.navigate('Professionals')}
-                        />
-                        <Text style={styles.servicesLabel}>
-                            Maquiagem
-                        </Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity style={styles.servicesItem}>
-                        <Icon
-                            name='email'
-                            size={52}
-                            style={styles.servicesIcon}
-                            color='#832189'
-                            onPress={()=>navigation.navigate('Professionals')}
-                        />
-                        <Text style={styles.servicesLabel}>
-                            Massagem
-                        </Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity style={styles.servicesItem}>
-                        <Icon
-                            name='email'
-                            size={52}
-                            style={styles.servicesIcon}
-                            color='#832189'
-                            onPress={()=>navigation.navigate('Professionals')}
-                        />
-                        <Text  style={styles.servicesLabel}>
-                            Cabelereira
-                        </Text>
-                    </TouchableOpacity>
-
-                </ScrollView> */}
-                
             </View>
-        </LinearGradient>
+            <RoundBG2
+                style={styles.background}
+            />
+        </View>
         </SafeAreaView>
     );
 }

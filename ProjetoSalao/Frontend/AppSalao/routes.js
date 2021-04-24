@@ -9,6 +9,7 @@ import ProfessionalsDesc from './pages/ProfessionalsDesc';
 import Home from './pages/Home'; 
 import PerfilUser from './pages/PerfilUser';
 
+import AuthRoutes from './tab.routes';
 
 const Stack = createStackNavigator();
 
@@ -20,9 +21,9 @@ const routes = () => {
                 <Stack.Screen name="Login" component={Login} />
                 <Stack.Screen name="SignUp" component={SignUp} />
 
-                <Stack.Screen name="Home" component={Home} />
+                <Stack.Screen name="Home" component={AuthRoutes} />
 
-                <Stack.Screen name="PerfilUser" component={PerfilUser}/>
+                <Stack.Screen name="PerfilUser" component={AuthRoutes}/>
                 <Stack.Screen name="Professionals" component={Professionals} />
                 <Stack.Screen name="ProfessionalsDesc" component={ProfessionalsDesc} />
 

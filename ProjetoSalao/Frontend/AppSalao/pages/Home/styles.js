@@ -1,8 +1,14 @@
 import { StyleSheet, Dimensions} from 'react-native';
 
-const windowWidth = Dimensions.get('window').width;
+const screenWidth = Dimensions.get('window').width;
+const screenHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
+    container:{
+        height: screenHeight,
+        width: screenWidth,
+        backgroundColor: '#FFF',
+    },
     logoffButton:{
         marginTop: 0,
         backgroundColor: '#F128F5',
@@ -16,27 +22,40 @@ const styles = StyleSheet.create({
         borderBottomWidth: 0,
         borderBottomColor: 'transparent'
     },
-    container:{
-        height:'100%',
-        width: '100%',
-    },
     main:{
+        flex: 1,
         alignItems: 'center',
+        justifyContent: 'space-around',
+        zIndex: 99,
+    },
+    imgContainer:{
+        marginTop: 30,
+        height: 140,
+        width: 140,
+        borderRadius: 300,
+        borderWidth: 6,
+        borderColor: '#832189',
+    },
+    overlayColor:{
+        position: 'absolute',
+        height: '100%',
+        width: '100%',
+        // backgroundColor: '#832189',
+        borderRadius: 300,
+        zIndex: 1,
+        // opacity: 0.5
     },
     img:{
-        marginTop: 60,
-        height: 160,
-        width: 160,
+        height: '100%',
+        width: '100%',
         borderRadius: 300,
-        borderWidth: 4,
-        borderColor: '#832189',
     },
     mainTextContainer:{
         marginTop: 15,
     },
     subMainText:{
         fontSize: 38,
-        color: '#FFF',
+        color: '#7B206F',
         fontWeight: 'bold',
     },
     searchBar:{
@@ -60,8 +79,10 @@ const styles = StyleSheet.create({
         fontSize: 30,
         color: 'white',
         marginBottom: 15,
+        color: '#7B206F',
     },
     containerText:{
+        marginTop: screenHeight*0.23,
         flexDirection: 'row',
         alignItems: 'center',
     },
@@ -73,29 +94,40 @@ const styles = StyleSheet.create({
     },
     lineText:{
         fontWeight: 'bold',
-        fontSize: 30,marginBottom:2,
-        color: 'white',
+        fontSize: 30,
+        color: '#7B206F',
         marginHorizontal: 20,
     },
     servicesContainer:{
-        marginBottom:0,
+        marginTop: 10,
+    },
+    servicesButton:{
+
     },
     servicesItem:{
         marginTop: 15,
         backgroundColor: '#FFF',
-        width: windowWidth*0.40,
+        width: screenWidth*0.40,
         alignItems: 'center',
+        justifyContent: 'space-around',
         marginHorizontal: 10,
-        paddingVertical: 35,
+        paddingVertical: 20,
         borderRadius: 25,
     },
     servicesLabel:{
         fontSize: 23,
-        color: '#832189',
+        color: '#FFF',
         fontWeight: 'bold',
         letterSpacing: 1,
+    },
+    background:{
+        position: 'absolute',
+        width: 704,
+        height: 588,
+        zIndex: -1,
+        bottom: screenHeight*0.37,
+        alignSelf: 'center',
     }
-
 })
 
 export default styles;
