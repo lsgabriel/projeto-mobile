@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {View, Text, Image, ScrollView, KeyboardAvoidingView, Platform, SafeAreaView} from 'react-native';
+import {View, Text, Image, ScrollView, KeyboardAvoidingView, Platform, SafeAreaView, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import styles from './styles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Input, Button } from 'react-native-elements';
@@ -83,8 +83,8 @@ const Login = () => {
     }, [authentication]);
 
     return(
-        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} enabled>
-            <SafeAreaView>
+        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} >
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={{flex: 1}}>
                 <Formik
                     initialValues={{email, password}}
                     onSubmit={auth}
@@ -186,7 +186,7 @@ const Login = () => {
                     </View>
                     )}
                 </Formik>
-            </SafeAreaView>
+            </TouchableWithoutFeedback>
         </KeyboardAvoidingView>
     );
 }

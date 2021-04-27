@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions} from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
@@ -53,10 +53,18 @@ const styles = StyleSheet.create({
     mainTextContainer:{
         marginTop: 15,
     },
+    subGreetingText:{
+        fontSize: 24,
+        color: '#7B206F',
+        fontWeight: 'bold',
+        lineHeight: 24,
+    },
     subMainText:{
         fontSize: 38,
         color: '#7B206F',
         fontWeight: 'bold',
+        lineHeight: 40,
+        textTransform: 'capitalize',
     },
     searchBar:{
         marginVertical: 20,
@@ -82,7 +90,7 @@ const styles = StyleSheet.create({
         color: '#7B206F',
     },
     containerText:{
-        marginTop: screenHeight*0.23,
+        marginTop: screenHeight*0.15,
         flexDirection: 'row',
         alignItems: 'center',
     },

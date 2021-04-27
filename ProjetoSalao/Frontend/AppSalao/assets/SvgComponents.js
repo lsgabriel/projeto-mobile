@@ -210,10 +210,94 @@ function RoundBG2(props) {
   )
 }
 
-export { RoundBG1, RoundBG2 };
+function RoundBG3(props) {
+  return (
+    <Svg
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+      width={800}
+      height={1216}
+      viewBox="0 0 800 1216"
+      {...props}
+    >
+      <Defs>
+        <LinearGradient
+          id="prefix__a"
+          x1={0.359}
+          y1={0.861}
+          x2={0.817}
+          y2={0.858}
+          gradientUnits="objectBoundingBox"
+        >
+          <Stop offset={0} stopColor="#7b206f" />
+          <Stop offset={1} stopColor="#c833ca" />
+        </LinearGradient>
+        <LinearGradient
+          id="prefix__d"
+          x1={0.242}
+          y1={0.815}
+          x2={0.89}
+          y2={0.81}
+          xlinkHref="#prefix__a"
+        >
+          <Stop offset={0} stopColor="#7b206f" />
+          <Stop offset={1} stopColor="#c833ca" />
+        </LinearGradient>
+        <LinearGradient
+          id="prefix__e"
+          x1={0.434}
+          y1={0.839}
+          x2={-0.057}
+          y2={0.758}
+          xlinkHref="#prefix__a"
+        >
+          <Stop offset={0} stopColor="#7b206f" />
+          <Stop offset={1} stopColor="#c833ca" />
+        </LinearGradient>
+      </Defs>
+      <G data-name="Componente 4 \u2013 1" transform="translate(18 12)">
+        <G transform="translate(-18 -12)" filter="url(#prefix__b)">
+          <Circle
+            data-name="Elipse 10"
+            cx={223}
+            cy={223}
+            r={223}
+            transform="translate(276 12)"
+            fill="url(#prefix__a)"
+          />
+        </G>
+        <G transform="translate(-18 -12)" filter="url(#prefix__c)">
+          <Ellipse
+            data-name="Elipse 11"
+            cx={324}
+            cy={259.5}
+            rx={324}
+            ry={259.5}
+            transform="translate(18 12)"
+            fill="url(#prefix__d)"
+          />
+        </G>
+        <Ellipse
+          data-name="Elipse 12"
+          cx={284.5}
+          cy={259.5}
+          rx={284.5}
+          ry={259.5}
+          transform="translate(79 28)"
+          fill="url(#prefix__e)"
+        />
+        <Ellipse
+          data-name="Elipse 9"
+          cx={391}
+          cy={581}
+          rx={391}
+          ry={581}
+          transform="translate(0 42)"
+          fill="#fff"
+        />
+      </G>
+    </Svg>
+  )
+}
 
-
-const styles = StyleSheet.create({
-  circle:{
-  },
-})
+export { RoundBG1, RoundBG2, RoundBG3 };

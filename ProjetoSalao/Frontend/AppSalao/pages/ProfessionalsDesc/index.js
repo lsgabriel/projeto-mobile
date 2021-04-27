@@ -3,6 +3,9 @@ import { View, Image, Text, Linking } from 'react-native';
 import { Header, Icon, Button } from 'react-native-elements';
 import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
+import { RectButton } from 'react-native-gesture-handler';
+
+import { RoundBG1 } from '../../assets/SvgComponents';
 
 const ProfessionalsDesc = ({route})=>{
     
@@ -13,27 +16,27 @@ const ProfessionalsDesc = ({route})=>{
     
     const sendMessage = ()=>{
         const message = `Olá ${item.name}, gostaria de agendar um horário com você.`;
-        const url = `whatsapp://send?text=${message}&phone=5516997491972`;
+        const url = `whatsapp://send?text=${message}&phone=5516997909738`;
         Linking.openURL(url);
     }   
     
     return(
         <View style={styles.container}>
             <Header
-                backgroundColor='#CA33D2'
-            >
-                <Icon type='font-awesome' name='angle-left' color='#FFF' size={30}
-                    onPress={()=>{navigation.goBack()}}
-                />
-                <Text
-                    style={styles.headerTitle}
-                >
-                Profissional</Text>
-            </Header>
-            <Icon
+                containerStyle={{borderBottomWidth: 0,}}
+                backgroundColor="transparent"
+                barStyle="dark-content"
+                leftComponent={
+                    <Icon
+                        type='font-awesome' name='angle-left' color='#7B206F' size={30}
+                        onPress={() => { navigation.goBack() }}
+                    />
+                }
+            />
+            {/* <Icon
                 type='material-community' name={item.Pfav ? 'star' : 'star-outline'} color='#CA33D2' containerStyle={styles.star} size={90}
                 onPress={()=> setPfav(!Pfav)}
-            />
+            /> */}
             <Image
                 source={{uri:item.profile_image}}
                 style={styles.img}
@@ -44,22 +47,26 @@ const ProfessionalsDesc = ({route})=>{
             >
             {item.name}</Text>
 
+            <View style={styles.divisor}/>
+
             <Text
                 style={styles.desc}
             >
             {item.description}</Text>
             <Text
-                style={styles.desc}
+                style={styles.type}
             >
             {item.type}
             </Text>
-            <Button
-                buttonStyle={styles.button}
+            <RectButton 
+                style={styles.button} 
                 onPress={sendMessage}
-                title="Agendar Horário"
-                icon={
-                    <Icon type='font-awesome' name='whatsapp' color='#FFF' style={styles.buttonIcon} />
-                }
+            >
+                <Text style={styles.buttonTitle}>Agendar Horário</Text>
+                <Icon type='font-awesome' name='whatsapp' color='#7B206F' style={styles.buttonIcon} size={32} />
+            </RectButton>
+            <RoundBG1
+                style={styles.background}
             />
         </View>
     );

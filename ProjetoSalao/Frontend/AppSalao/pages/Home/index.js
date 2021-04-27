@@ -10,8 +10,10 @@ import api from '../../services/api';
 /* import useAuth from '../../hooks/useAuth'; */
 import { useNavigation } from '@react-navigation/native';
 
-import { NailIcon, MassageIcon, LipIcon, HairIcon } from '../../assets/SvgIcons';
+import { NailIcon, MassageIcon, LipIcon, HairIcon, LogoIcon2 } from '../../assets/SvgIcons';
 import { RoundBG2 } from '../../assets/SvgComponents';
+
+import Loading from '../../components/Loading';
 
 const Home = () => {
 
@@ -71,18 +73,18 @@ const Home = () => {
         }
     }
      */
-    const Spinner = ()=>{
-        return (loading ? <ActivityIndicator size="large" color="#00000ff" /> : null);
-    }
+    // const Spinner = ()=>{
+    //     return (loading ? <ActivityIndicator size="large" color="#00000ff" /> : null);
+    // }
 
-    const logoff = async ()=>{
-        try {
-         await AsyncStorage.setItem('auth', '');
-         navigation.navigate('Login');
-     } catch (error) {
+    // const logoff = async ()=>{
+    //     try {
+    //      await AsyncStorage.setItem('auth', '');
+    //      navigation.navigate('Login');
+    //  } catch (error) {
             
-        }
-    }
+    //     }
+    // }
 
     // const getData = async()=>{
     //     try {
@@ -101,18 +103,29 @@ const Home = () => {
         loadingData();
     }, [loadingData]);
 
+    if(loading)
+        return <Loading />
+
     return (
         <SafeAreaView>
         <View
             style={styles.container}
         >
             <View style={styles.main}>
-{/* 
+{/*             
                 <Button
                     title="Logoff"
                     buttonStyle={styles.logoffButton}
                     onPress={logoff}
                 /> */}
+                <Header
+                    containerStyle={{borderBottomWidth: 0, height: 0,}}
+                    backgroundColor="transparent"
+                    barStyle="dark-content"
+                    leftComponent={
+                        <LogoIcon2/>
+                    }
+                />
 
                 <TouchableOpacity
                     onPress={()=>navigation.navigate('PerfilUser')}
@@ -134,9 +147,14 @@ const Home = () => {
                 </TouchableOpacity>
                 <View style={styles.mainTextContainer}>
                     <Text
+                        style={styles.subGreetingText}
+                    >
+                        Olá,
+                    </Text>
+                    <Text
                         style={styles.subMainText}
                     >
-                        Olá, {dados === undefined ? '' : dados.name}
+                        {dados === undefined ? '' : dados.name}
                     </Text>
                 </View>
 

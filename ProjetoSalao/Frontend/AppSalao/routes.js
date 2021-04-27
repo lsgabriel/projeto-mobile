@@ -8,6 +8,7 @@ import Professionals from './pages/Professionals';
 import ProfessionalsDesc from './pages/ProfessionalsDesc';
 import Home from './pages/Home'; 
 import PerfilUser from './pages/PerfilUser';
+import EditUser from './pages/EditUser';
 
 import AuthRoutes from './tab.routes';
 
@@ -23,7 +24,9 @@ const routes = () => {
 
                 <Stack.Screen name="Home" component={AuthRoutes} />
 
-                <Stack.Screen name="PerfilUser" component={AuthRoutes}/>
+                <Stack.Screen name="PerfilUser" component={PerfilUser}/>
+                <Stack.Screen name="EditUser" component={EditUser}/>
+                {/* <Stack.Screen name="PerfilUserTab" component={AuthRoutes}/> */}
                 <Stack.Screen name="Professionals" component={Professionals} />
                 <Stack.Screen name="ProfessionalsDesc" component={ProfessionalsDesc} />
 

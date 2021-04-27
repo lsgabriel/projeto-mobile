@@ -29,7 +29,7 @@ const ProfessionalListItem = ({item, isFav})=>{
     const navigation = useNavigation();
     return(
         <View style={styles.main}>
-            <TouchableOpacity
+            {/* <TouchableOpacity
                 onPress={checkFavorite}
                 style={styles.star}
             >
@@ -40,22 +40,31 @@ const ProfessionalListItem = ({item, isFav})=>{
 
 
 
-            </TouchableOpacity>
-            <Image
-                style={styles.img}
-                source={{uri:item.profile_image}}
-            />
+            </TouchableOpacity> */}
+            
+            {
+                item.profile_image != null
+                ? <Image
+                    style={styles.img}
+                    source={{uri:item.profile_image}}
+                />
+                : <View style={styles.img}>
+                    <Text style={styles.nullImg}> ? </Text>
+                </View>
+            }
+            <View style={styles.divisorLine}/>
             <View style={styles.container}>
                 <Text style={styles.title}>{item.name}</Text>
                 <Text style={styles.desc}>{item.description}</Text>
             </View>
             <TouchableOpacity style={styles.button}
                 onPress={()=>{ navigation.navigate('ProfessionalsDesc', item) }}
+                activeOpacity={0.7}
             >                
                 <Icon
-                    type='font-awesome' name='calendar' color='#CA33D2' size={30}
+                    type='font-awesome' name='calendar' color='#C833CA' size={30}
                 />
-                <Text style={styles.btitle}>Agendar</Text>
+                {/* <Text style={styles.btitle}>Agendar</Text> */}
             </TouchableOpacity>
         </View>
     )
@@ -66,58 +75,74 @@ export default ProfessionalListItem;
 const styles = StyleSheet.create({
     main:{
         flexDirection: 'row',
-        marginVertical: 4,
-        backgroundColor: '#FFF',
-        position: 'relative',
-        borderWidth: 1.5,
-        borderColor: '#832189',
-        borderRadius: 15,
+        marginVertical: 10,
+        marginHorizontal: 15,
+        backgroundColor: '#C833CA',
+        borderRadius: 99,
+        elevation: 5,
     },
-    star:{
-        position: 'absolute',
-        zIndex: 99,
-        backgroundColor: '#832189',
-        borderRadius: 13,
+    // star:{
+    //     position: 'absolute',
+    //     zIndex: 99,
+    //     backgroundColor: '#832189',
+    //     borderRadius: 13,
 
-    },
+    // },
     img:{
-        flex: 1,
-        marginVertical: 5,
-        marginLeft: 5,
-        height: 95,
-        width: 90,
+        marginVertical: 10,
+        marginLeft: 10,
+        height: 70,
+        width: 70,
         borderRadius: 90,
-        borderWidth: 1.5,
-        borderColor: '#832189'
+        borderWidth: 2,
+        borderColor: '#FFF',
+        backgroundColor: '#FFF',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    nullImg:{
+        fontSize: 38,
+        fontWeight: 'bold',
+        color: '#C833CA',
+    },
+    divisorLine:{
+        alignSelf: 'center',
+        height: '50%',
+        width: 2,
+        borderRadius: 99,
+        backgroundColor: '#FFF',
+        marginHorizontal: 15,
     },
     button:{
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        width: 120,
-        backgroundColor: '#D994DD',
-        borderRadius: 14,
+        backgroundColor: '#FFF',
+        borderRadius: 99,
     },
     btitle:{
         fontWeight: 'bold',
         color: '#CA33D2',
     },
     container:{
-        paddingHorizontal: 20,
+        paddingRight: 5,
         flex: 2,
-        justifyContent: 'space-evenly',
+        paddingVertical: 10,
+        // justifyContent: 'space-around',
     },
     title:{
         flex: 2,
         textAlignVertical: 'center',
-        fontSize: 24,
+        fontSize: 32,
         fontWeight: 'bold',
-        color: '#832189',
+        color: '#FFF',
+        textTransform: 'capitalize',
     },
     desc:{
         flex: 1,
-        fontSize: 14,
-        color: '#832189',
+        fontSize: 16,
+        color: '#FFF',
+        textTransform: 'capitalize',
     },
 });
 

@@ -2,25 +2,32 @@ import React from 'react';
 import { Platform } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialIcons } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
 
 
 import Home from './pages/Home';
 import Perfil from './pages/PerfilUser';
+import Search from './pages/Professionals';
 
 
 const AppTab = createBottomTabNavigator();
 
 const AuthRoutes = ()=>{
     return(
+
         <AppTab.Navigator
             tabBarOptions={{
                 activeTintColor: '#FFF',
                 inactiveTintColor: '#B8B8B8',
                 labelPosition: 'below-icon',
                 style: {
-                    paddingVertical: Platform.OS == 'ios' ? 20 : 0,
+                    paddingVertical: 10,
                     height: 70,
-                    backgroundColor: '#7B206F'
+                    backgroundColor: '#922C85',
+                    alignItems: 'center',
+                    paddingBottom: 10,
+                    borderTopStartRadius: 30,
+                    borderTopEndRadius: 30,
                 },
             }}>
 
@@ -28,10 +35,10 @@ const AuthRoutes = ()=>{
                     name="Home"
                     component={Home}
                     options={{
-                        tabBarIcon: (({ size, color }) =>(
+                        tabBarIcon: (({ color }) =>(
                             <MaterialIcons
                                 name="home"
-                                size={size}
+                                size={35}
                                 color={color}
                             />
                         ))
@@ -40,12 +47,12 @@ const AuthRoutes = ()=>{
 
                 <AppTab.Screen
                     name="Search"
-                    component={Perfil}
+                    component={Search}
                     options={{
-                        tabBarIcon: (({ size, color }) =>(
+                        tabBarIcon: (({ color }) =>(
                             <MaterialIcons
                                 name="search"
-                                size={size}
+                                size={35}
                                 color={color}
                             />
                         ))
@@ -56,13 +63,13 @@ const AuthRoutes = ()=>{
                     name="Perfil"
                     component={Perfil}
                     options={{
-                        tabBarIcon: (({ size, color }) =>(
+                        tabBarIcon: (({ color }) =>(
                             <MaterialIcons
                                 name="person"
-                                size={size}
+                                size={35}
                                 color={color}
                             />
-                        ))
+                        ))                        
                     }}
                 />
 

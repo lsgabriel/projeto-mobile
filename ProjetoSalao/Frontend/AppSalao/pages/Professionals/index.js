@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, KeyboardAvoidingView } from 'react-native';
 import { Header, Icon, SearchBar } from 'react-native-elements';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import api from '../../services/api';
@@ -9,7 +9,7 @@ import ProfessionalListItem from '../../components/ProfessionalListItem';
 import { useNavigation } from '@react-navigation/native';
 import useAuth from '../../hooks/useAuth';
 
-
+import Loading from '../../components/Loading';
 
 const Professionals = ({route}) => {
     const navigation = useNavigation();
@@ -18,6 +18,7 @@ const Professionals = ({route}) => {
     // const auth = useAuth();
     const [auth, setAuth] = useState();
     const [favorites, setFavorites] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     const getFav = async()=>{
         const fav = JSON.parse(await AsyncStorage.getItem('hairstyle@favorites'));
@@ -49,6 +50,7 @@ const Professionals = ({route}) => {
                     });
                 }
                 setDados(response.data);
+                setLoading(false);
             }
             
         } catch (error) {
@@ -68,34 +70,67 @@ const Professionals = ({route}) => {
         loadingData();
     }, [getAuth , search]);
 
+    if(loading)
+        return <Loading />
+
     return (
-        <View>
-            <Header
-                backgroundColor='#CA33D2'
-            >
-                <Icon
-                    type='font-awesome' name='angle-left' color='#FFF' size={30}
-                    onPress={() => { navigation.goBack() }}
+        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+            <View style={styles.mainContainer}>
+                <Header
+                    containerStyle={{borderBottomWidth: 0,}}
+                    backgroundColor="transparent"
+                    barStyle="dark-content"
+                    leftComponent={
+                        <Icon
+                            type='font-awesome' name='angle-left' color='#7B206F' size={30}
+                            onPress={() => { navigation.goBack() }}
+                        />
+                    }
                 />
-                <Text
-                    style={styles.headerTitle}
-                >
-                    Profissionais
-            </Text>
-                <View />
-            </Header>
-            <SearchBar
-                value={search}
-                onChangeText={setSearch}
-                placeholder='Busque um Profissional'
-                lightTheme
-            />
-            <FlatList
-                data={dados}
-                renderItem={({item})=> <ProfessionalListItem item={item} isFav={favorites} />}
-                keyExtractor={(item)=> String(item.id)}
-            />
-        </View>
+                <SearchBar
+                    value={search}
+                    onChangeText={setSearch}
+                    placeholder='Busque um Profissional'
+                    lightTheme={false}
+
+                    style={styles.search}
+                    containerStyle={styles.searchBar}
+                    inputContainerStyle={styles.searchBarInputContainer}
+                    inputStyle={styles.searchBarInput}
+                    round={true}
+                    placeholderTextColor='#CF84C5'
+
+                    searchIcon={
+                        <Icon
+                            name='search'
+                            size={22}
+                            color='#EFB7E8'
+                        />
+                    }
+                    clearIcon={
+                        <Icon 
+                            name='close'
+                            size={22}
+                            color='#EFB7E8'
+                            onPress={()=>setSearch('')}
+                        />
+                    }
+                />
+
+                <View style={styles.headerTitleContainer}>
+                    <View style={styles.headerTitleLine}/>
+                    <Text style={styles.headerTitle}>Profissionais</Text>
+                    <View style={styles.headerTitleLine}/>
+                </View>
+
+                <FlatList
+                    data={dados}
+                    renderItem={({item})=> <ProfessionalListItem item={item} isFav={favorites} />}
+                    keyExtractor={(item)=> String(item.id)}
+                    showsVerticalScrollIndicator={false}
+                />
+            </View>
+        </KeyboardAvoidingView>
     )
 }
 

@@ -7,6 +7,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import api from '../../services/api';
 import styles from './styles';
 import { useNavigation } from '@react-navigation/core';
+import { RoundBG3 } from '../../assets/SvgComponents';
+import { RectButton } from 'react-native-gesture-handler';
+
+import Loading from '../../components/Loading';
 
 const PerfilUser = () => {
 
@@ -34,31 +38,7 @@ const PerfilUser = () => {
             date: '05/11/2021',
             hour: '09:00',
             type: 'Cabelos',
-        },
-        {
-            id: 5,
-            date: '10/10/2021',
-            hour: '16:00',
-            type: 'Manicure',
-        },
-        {
-            id: 6,
-            date: '10/05/2021',
-            hour: '10:00',
-            type: 'Massagem',
-        },
-        {
-            id: 7,
-            date: '05/11/2021',
-            hour: '09:00',
-            type: 'Cabelos',
-        },
-        {
-            id: 8,
-            date: '10/10/2021',
-            hour: '16:00',
-            type: 'Manicure',
-        },
+        }
     ]
 
     const [loading, setLoading] = useState(true);
@@ -77,50 +57,83 @@ const PerfilUser = () => {
 
                 setDados(response.data);
                 setLoading(false);
-
             } catch (error) {
                 console.log(error);
             }
     }, []);
+
+    const logoff = async ()=>{
+        try {
+         await AsyncStorage.setItem('auth', '');
+         navigation.navigate('Login');
+     } catch (error) {
+            
+        }
+    }
     
     useEffect(()=>{
         loadingData();
     }, [loadingData]);
 
+    if(loading)
+        return <Loading />
+
     return (
-            <View style={styles.container}>
+        <View style={styles.container}>
+
+            <View style={styles.header}>
                 <Header
-                    backgroundColor="#D994DD"
+                    containerStyle={{borderBottomWidth: 0,}}
+                    backgroundColor="transparent"
+                    barStyle="light-content"
                     leftComponent={
                         <Icon
-                            type='font-awesome'
-                            name='angle-left'
+                            type='ionicon'
+                            name='chevron-back-outline'
                             color='#FFF'
                             size={30}
                             onPress={()=> navigation.goBack()}
                         />
                     }
-                    centerComponent={
-                        <Text style={styles.perfil}>Perfil</Text>
+                    rightComponent={
+                        <Icon
+                            type='ionicon'
+                            name='log-out-outline'
+                            color='#FFF'
+                            size={30}
+                            onPress={logoff}
+                        />
                     }
                 />
+                <View style={styles.userHeaderContainer}>
+                    <Image
+                        source={{ uri: dados === undefined ? null : dados.profile_image }}
+                        style={styles.img}
+                    />
 
-                <Image
-                    source={{ uri: dados === undefined ? null : dados.profile_image }}
-                    style={styles.img}
-                />
+                    <View style={styles.userInformationsContainer}>
+                        <Text style={styles.text}>{dados === undefined ? 'Undefined' : dados.name}</Text>
+                        <Text style={styles.text2}>{dados === undefined ? 'Undefined' : dados.email}</Text>
+                        <Text style={styles.text2}>{dados === undefined ? 'Undefined' : dados.phone}</Text>
+                        <RectButton style={styles.editButton} onPress={()=> navigation.navigate('EditUser')}>
+                            <Text style={styles.editButtonText}>Editar</Text>
+                        </RectButton>
+                    </View>
+                </View>
+            </View>
 
-                <Text style={styles.text}>{dados === undefined ? 'Undefined' : dados.name}</Text>
-                <Text style={styles.text2}>{dados === undefined ? 'Undefined' : dados.phone}</Text>
-
-                <LinearGradient
-                    colors={['#D994DD', '#CA33D2']}
+            <View style={styles.contentContainer}>
+                <View
                     style={styles.bgAgendamentos}
-                    start={{ x: 0, y: 0 }}
-                    end={{ x: 1.5, y: 0 }}
                 >
+                    <Icon
+                        type='ionicon'
+                        name='calendar-outline'
+                        color='#7B206F'
+                        size={30}
+                    />
                     <Text style={styles.agendamentos}>Seus Agendamentos</Text>
-                </LinearGradient>
+                </View>
                 <FlatList
                     data={data}
                     keyExtractor={ (item)=>String(item.id) }
@@ -133,10 +146,14 @@ const PerfilUser = () => {
                             <Text style={styles.tratamento}>{item.type}</Text>
                         </View>
                     )}
-                    showsVerticalScrollIndicator={false}
-                    
+                    contentContainerStyle={styles.mainList}
+                    showsVerticalScrollIndicator={true}                    
                 />
             </View>
+            <RoundBG3
+                style={styles.background}
+            />
+        </View>
     );
 }
 

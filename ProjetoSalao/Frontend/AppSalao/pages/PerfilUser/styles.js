@@ -1,18 +1,25 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
 const screenWidth = Dimensions.get('window').width;
+const screenHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
     container:{
-        flex: 1,
+        height: screenHeight,
         alignItems: 'center',
         justifyContent: 'space-between',
+        backgroundColor: '#FFF',
+    },
+    header:{
+        backgroundColor: '#C833CA',
+        alignItems: 'center',
+        paddingBottom: 90,
     },
     img: {
-        width: 180,
-        height: 180,
+        width: 150,
+        height: 150,
         borderRadius: 100,
-        borderColor: 'purple',
+        borderColor: '#FFF',
         borderWidth: 4,
     },
     perfil:{
@@ -22,12 +29,11 @@ const styles = StyleSheet.create({
     text:{
         fontWeight: 'bold',
         fontSize: 35,
-        color: 'purple',
-        marginTop: 10,
+        color: '#FFF',
+        textTransform: 'capitalize',
     },
     text2:{
-        marginBottom: 20,
-        color: 'purple',
+        color: '#FFF',
     },
     data:{     
         fontSize: 15,
@@ -51,34 +57,70 @@ const styles = StyleSheet.create({
     },
     agendamentos:{
         fontSize: 20,
-        color: 'white',
+        color: '#7B206F',
         fontWeight: 'bold',
     },
     bgAgendamentos:{
-        height: 58,
-        width: '100%',
-        borderWidth: 2,
-        borderColor: 'purple',
+        flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        elevation: 5,
+        marginBottom: 20,
     },
+    // mainList:{
+    //     marginTop: 10,
+    // },
     listItem:{
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        // backgroundColor: 'pink',
-        width: screenWidth,
-        paddingHorizontal: 30,
-        backgroundColor: '#D994DD',
+        alignSelf: 'center',
+        backgroundColor: '#C833CA',
+        width: '85%',
+        paddingHorizontal: 40,
         paddingVertical: 10,
         color: '#FFF',
-        borderColor: 'purple',
-        borderWidth: 1,
+        borderRadius: 30,
+        marginTop: 15,
     },
     dateItem:{
         flexDirection: 'column'
-    }
+    },
+    background:{
+        position: 'absolute',
+        width: 704,
+        height: 588,
+        zIndex: 0,
+        top: screenHeight*0.33,
+        alignSelf: 'center',
+    },
+    contentContainer:{
+        zIndex: 1,
+        marginTop: screenHeight*0.05,
+    },
+    userHeaderContainer:{
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    userInformationsContainer:{
+        flexDirection: 'column',
+        marginLeft: 25,
+        justifyContent: 'space-evenly',
+        // backgroundColor: '#000',
+        height: 150,
+    },
+    editButton:{
+        backgroundColor: '#FFF',
+        paddingHorizontal: 30,
+        paddingVertical: 10,
+        borderRadius: 30,
+        justifyContent: 'center',
+        alignItems: 'center',
+        elevation: 4,
+    },
+    editButtonText:{
+        color: '#7B206F',
+        fontWeight: 'bold',
+    },
 });
 
 export default styles;
