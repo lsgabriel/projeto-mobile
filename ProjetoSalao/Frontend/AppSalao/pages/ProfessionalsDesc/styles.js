@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
         borderRadius: 300,
         borderWidth: 5,
         borderColor: '#7B206F',
-        elevation: 2,
+        // elevation: 2,
     },
     title:{
         marginTop: 5,

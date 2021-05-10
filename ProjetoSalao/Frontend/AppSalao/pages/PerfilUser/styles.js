@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     },
     contentContainer:{
         zIndex: 1,
-        marginTop: screenHeight*0.05,
+        marginTop: screenHeight*0.08,
     },
     userHeaderContainer:{
         flexDirection: 'row',

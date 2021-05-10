@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         zIndex: 99,
     },
     imgContainer:{
-        marginTop: 30,
+        marginTop: 50,
         height: 140,
         width: 140,
         borderRadius: 300,
@@ -81,7 +81,6 @@ const styles = StyleSheet.create({
     },
     searchBarInputContainer:{
         backgroundColor: 'transparent'
-        
     },
     dividerText:{
         fontSize: 30,
@@ -90,7 +89,7 @@ const styles = StyleSheet.create({
         color: '#7B206F',
     },
     containerText:{
-        marginTop: screenHeight*0.15,
+        marginTop: screenHeight*0.18,
         flexDirection: 'row',
         alignItems: 'center',
     },
