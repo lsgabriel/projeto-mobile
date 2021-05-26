@@ -11,6 +11,7 @@ script:
   - echo 'Installing Dependencies'
   - npm install 
   - echo 'Running tests'
+  - cd ProjetoSalao/Backend
   - npm run start & cypress run
 
 #Define o processo de deploy
