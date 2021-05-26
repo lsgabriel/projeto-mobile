@@ -14,7 +14,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Services.init({
-    id_category: DataTypes.INTEGER
+    id_category: DataTypes.INTEGER,
+    service_name: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Services',

@@ -15,8 +15,8 @@ module.exports = (sequelize, DataTypes) => {
   };
   Execute.init({
     status: DataTypes.INTEGER,
-    id_calendar: DataTypes.INTEGER,
-    id_client: DataTypes.INTEGER
+    id_service: DataTypes.INTEGER,
+    id_professional: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Execute',
