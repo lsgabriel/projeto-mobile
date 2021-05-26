@@ -3,7 +3,7 @@
 
 # Versao que a aplicação suporta
 - node_js:
-  - 14.17.0
+  - '14.17.0'
 
 #Define o script de teste que deve rodar toda vez que o codigo for alterado e instalação de dependencias
 - script:
