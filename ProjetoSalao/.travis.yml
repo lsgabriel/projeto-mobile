@@ -5,7 +5,7 @@
 - node_js:
   - 14.17.0
 
-#Define o scirpt de teste que deve rodar toda vez que o codigo for alterado e instalação de dependencias
+#Define o script de teste que deve rodar toda vez que o codigo for alterado e instalação de dependencias
 - script:
   - echo 'Starting'
   - echo 'Installing Dependencies'
