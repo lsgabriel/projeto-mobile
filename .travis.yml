@@ -15,7 +15,7 @@ script:
   - echo 'Running tests'
   - npm run start & cypress run
   
-before_install: cd ProjetoSalao/Backend
+
 
 #Define o processo de deploy
 deploy:
