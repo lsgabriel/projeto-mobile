@@ -8,11 +8,8 @@ node_js:
 #Define o script de teste que deve rodar toda vez que o código for alterado e instalação de dependências
 script:
   - echo 'Starting'
-  - echo 'Installing Dependencies'
-  - npm install 
-  - echo 'Running tests'
-  - cd ProjetoSalao/Backend
-  - npm run start & cypress run
+  - echo 'Installing Dependencies & running tests'
+  - cd ProjetoSalao/Backend & npm install & npm run start & cypress run
 
 #Define o processo de deploy
 deploy:
