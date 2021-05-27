@@ -9,7 +9,7 @@ node_js:
 script:
   - echo 'Starting'
   - echo 'Installing Dependencies & running tests'
-  - cd ProjetoSalao/Backend & npm install & npm run start & cypress run
+  - cd ProjetoSalao/Backend &&\ npm install &&\ npm run start &&\ cypress run
 
 #Define o processo de deploy
 deploy:
