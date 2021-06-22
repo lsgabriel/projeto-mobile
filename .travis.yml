@@ -1,0 +1,27 @@
+# Linguagem utilizada pela aplicação
+language: node_js
+
+# Versão que a aplicação suporta
+node_js:
+  - "14.17.0"
+
+before_script: cd ProjetoSalao/Backend
+
+#Define o script de teste que deve rodar toda vez que o código for alterado e instalação de dependências
+script:
+  - echo 'Starting'
+  - echo 'Installing Dependencies'
+  - npm install 
+  - echo 'Running tests'
+  - npm run start & cypress run
+  
+after_script: cd/ProjetoSalao/Backend
+
+#Define o processo de deploy
+deploy:
+  provider: heroku
+  api_key: $HEROKU_API_KEY
+  app: $APP
+  skip_cleanup: true
+  on: 
+    all_branches: true
